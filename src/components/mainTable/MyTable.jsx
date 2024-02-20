@@ -68,7 +68,7 @@ const MyTable = ({ filterValues }) => {
     const fetchChartData = async () => {
       try {
         if (selectedInstrumentId) {
-          const chartResponse = await fetch(`https://optionscreener.ir/api/options/chart?instrument_id=${selectedInstrumentId}`);
+          const chartResponse = await fetch(`https://api.optionscreener.ir/api/options/chart?instrument_id=${selectedInstrumentId}`);
           if (!chartResponse.ok) {
             throw new Error(`HTTP error! Status: ${chartResponse.status}`);
           }

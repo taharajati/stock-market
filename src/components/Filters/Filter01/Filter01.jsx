@@ -10,7 +10,7 @@ const Filter01 = ({ setFilterValue }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios.get('https://optionscreener.ir/api/options/uainstruments')
+    axios.get('https://api.optionscreener.ir/api/options/uainstruments')
       .then(response => {
         setData(response.data.data);
       })

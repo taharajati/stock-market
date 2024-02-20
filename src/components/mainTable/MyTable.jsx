@@ -23,7 +23,7 @@ const MyTable = ({ filterValues }) => {
     const fetchData = async () => {
       try {
         // Fetch intradatacols
-        const intradatacolsResponse = await fetch('https://optionscreener.ir/api/options/intradatacols');
+        const intradatacolsResponse = await fetch('https://api.optionscreener.ir/api/options/intradatacols');
         if (!intradatacolsResponse.ok) {
           throw new Error(`HTTP error! Status: ${intradatacolsResponse.status}`);
         }
@@ -44,7 +44,7 @@ const MyTable = ({ filterValues }) => {
         }
 
         // Fetch intradata
-        const intradataResponse = await fetch('https://optionscreener.ir/api/options/intradata');
+        const intradataResponse = await fetch('https://api.optionscreener.ir/api/options/intradata');
         if (!intradataResponse.ok) {
           throw new Error(`HTTP error! Status: ${intradataResponse.status}`);
         }
@@ -68,63 +68,41 @@ const MyTable = ({ filterValues }) => {
     const fetchChartData = async () => {
       try {
         if (selectedInstrumentId) {
-          // Replace the API call with manual data
-          // const chartResponse = await fetch(`https://optionscreener.ir/api/options/chart/${selectedInstrumentId}`);
-          // if (!chartResponse.ok) {
-          //   throw new Error(`HTTP error! Status: ${chartResponse.status}`);
-          // }
-          
-          // Hardcoded chart data for testing
-          const manualChartData = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [
-              {
-                label: 'My Dataset',
-                data: [65, 59, 80, 81, 56, 55, 40],
-                fill: false,
-                borderColor: 'rgba(75,192,192,1)',
-              },
-            ],
+          const chartResponse = await fetch(`https://optionscreener.ir/api/options/chart?instrument_id=${selectedInstrumentId}`);
+          if (!chartResponse.ok) {
+            throw new Error(`HTTP error! Status: ${chartResponse.status}`);
+          }
+    
+          const chartDataFromAPI = await chartResponse.json();
+    
+          // Use the actual data fetched from the API
+          setChartData({
+            labels: chartDataFromAPI.ChartData.labels,
+            datasets: [{
+              label: chartDataFromAPI.ChartData.datasets[0].label,
+              data: chartDataFromAPI.ChartData.datasets[0].data,
+              fill: chartDataFromAPI.ChartData.datasets[0].fill,
+              borderColor: chartDataFromAPI.ChartData.datasets[0].borderColor,
+            }],
+          });
+    
+          // Extracting necessary information from API response
+          const { options } = chartDataFromAPI;
+          const dynamicChartOptions = {
+            responsive: options.responsive,
+            maintainAspectRatio: options.maintainAspectRatio,
+            scales: options.scales,
+            annotation: options.annotation,
           };
     
-          console.log('Manual Chart Data:', manualChartData);
-          setChartData(manualChartData);
-    
-          // Extracting necessary information from API response (not needed for manual data)
-          // const { scales, plugins } = chartData;
-    
-          // Creating dynamic chartOptions (not needed for manual data)
-          // const dynamicChartOptions = {
-          //   scales: scales,
-          //   plugins: plugins,
-          // };
-    
-          // setChartOptions(dynamicChartOptions);
-    // Hardcoded chart options for testing
-const manualChartOptions = {
-  scales: {
-    x: {
-      type: 'category', // Use 'category' instead of 'linear' for labels
-      position: 'bottom',
-    },
-    y: {
-      type: 'linear',
-      position: 'left',
-    },
-  },
-};
-
-        setChartOptions(manualChartOptions);
-      
+          setChartOptions(dynamicChartOptions);
         }
-        
-
       } catch (error) {
         console.error('Error fetching chart data:', error);
         // Handle error accordingly
       }
+    
     };
-
     fetchChartData();
   }, [selectedGroup, filterValues.filter04, selectedInstrumentId]);
 
@@ -218,14 +196,15 @@ const manualChartOptions = {
       </div>
 
       {showChart && (
-        <Modal onClose={() => setShowChart(false)}>
-          {chartData ? (
-            <MyChart chartData={chartData} chartOptions={chartOptions} />
-          ) : (
-            <div>No chart data available.</div>
-          )}
-        </Modal>
-      )}
+  <Modal onClose={() => setShowChart(false)}>
+    {chartData ? (
+      <MyChart data={chartData} options={chartOptions} />
+    ) : (
+      <div>No chart data available.</div>
+    )}
+  </Modal>
+)}
+      
     </div>
   );
 };

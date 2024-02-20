@@ -12,13 +12,13 @@ const Filter02 = ({ onFilterChange }) => {
 
   return (
     <>
-    <div className="text-right ">
-      <span className='mr-2 text-right float-right ms-3' htmlFor="profitState">وضعیت سود</span>
+    <div className="text-right my-3 ">
+      <span className='mr-6 text-right float-right ms-3' htmlFor="profitState">وضعیت سود</span>
       <div className="flex items-center justify-end mb-3 w-[14%] ml-auto m-1 ">
         <Form>
           <Form.Group controlId="profitState">
             <Form.Select
-              className="form-control border text-center"
+              className="form-control border text-center w-48"
               value={selectedValue}
               onChange={handleChange}
             >

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import DataFilter from './DataFilter';
 import MyChart from '../charts/MyChart'; // Import the Chart component
 import { Line } from 'react-chartjs-2';
+import Modal from './Modal'; // Import the Modal component
 
 const MyTable = ({ filterValues }) => {
   const [intradata, setIntradata] = useState();
@@ -12,9 +13,11 @@ const MyTable = ({ filterValues }) => {
   const [error, setError] = useState(null);
   const [columns, setColumns] = useState([]);
   const [validGroups, setValidGroups] = useState([]);
-  const [chartData, setChartData] = useState(null); 
+  const [chartData, setChartData] = useState(null);
+  const [chartOptions, setChartOptions] = useState(null);
   const [showChart, setShowChart] = useState(false);
   const [hoveredRowIndex, setHoveredRowIndex] = useState(null);
+  const [selectedInstrumentId, setSelectedInstrumentId] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,15 +67,58 @@ const MyTable = ({ filterValues }) => {
   useEffect(() => {
     const fetchChartData = async () => {
       try {
-        // Fetch chart data (replace 'YOUR_CHART_API_ENDPOINT' with the actual endpoint)
-        const chartResponse = await fetch('YOUR_CHART_API_ENDPOINT');
-        if (!chartResponse.ok) {
-          throw new Error(`HTTP error! Status: ${chartResponse.status}`);
-        }
+        if (selectedInstrumentId) {
+          // Replace the API call with manual data
+          // const chartResponse = await fetch(`https://optionscreener.ir/api/options/chart/${selectedInstrumentId}`);
+          // if (!chartResponse.ok) {
+          //   throw new Error(`HTTP error! Status: ${chartResponse.status}`);
+          // }
+          
+          // Hardcoded chart data for testing
+          const manualChartData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [
+              {
+                label: 'My Dataset',
+                data: [65, 59, 80, 81, 56, 55, 40],
+                fill: false,
+                borderColor: 'rgba(75,192,192,1)',
+              },
+            ],
+          };
+    
+          console.log('Manual Chart Data:', manualChartData);
+          setChartData(manualChartData);
+    
+          // Extracting necessary information from API response (not needed for manual data)
+          // const { scales, plugins } = chartData;
+    
+          // Creating dynamic chartOptions (not needed for manual data)
+          // const dynamicChartOptions = {
+          //   scales: scales,
+          //   plugins: plugins,
+          // };
+    
+          // setChartOptions(dynamicChartOptions);
+    // Hardcoded chart options for testing
+const manualChartOptions = {
+  scales: {
+    x: {
+      type: 'category', // Use 'category' instead of 'linear' for labels
+      position: 'bottom',
+    },
+    y: {
+      type: 'linear',
+      position: 'left',
+    },
+  },
+};
 
-        const chartData = await chartResponse.json();
-        console.log('API Response for chart data:', chartData);
-        setChartData(chartData);
+        setChartOptions(manualChartOptions);
+      
+        }
+        
+
       } catch (error) {
         console.error('Error fetching chart data:', error);
         // Handle error accordingly
@@ -80,7 +126,7 @@ const MyTable = ({ filterValues }) => {
     };
 
     fetchChartData();
-  }, [selectedGroup, filterValues.filter04]);
+  }, [selectedGroup, filterValues.filter04, selectedInstrumentId]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -100,51 +146,6 @@ const MyTable = ({ filterValues }) => {
     columns,
   });
 
-  const chartOptions = {
-    scales: {
-      x: {
-        type: 'linear',
-      },
-      y: {
-        beginAtZero: true,
-      },
-    },
-    plugins: {
-      legend: {
-        display: true,
-        position: 'top',
-      },
-      annotation: {
-        annotations: [
-          {
-            type: 'line',
-            mode: 'vertical',
-            scaleID: 'x',
-            value: 5,
-            borderColor: 'red',
-            borderWidth: 2,
-            label: {
-              content: 'Vertical Line',
-              enabled: true,
-            },
-          },
-          {
-            type: 'line',
-            mode: 'horizontal',
-            scaleID: 'y',
-            value: 10,
-            borderColor: 'blue',
-            borderWidth: 2,
-            label: {
-              content: 'Horizontal Line',
-              enabled: true,
-            },
-          },
-        ],
-      },
-    },
-  };
-
   return (
     <div className="container mt-4 mx-auto p-4" dir="rtl">
       <div className="flex items-center justify-between mb-3 ">
@@ -162,23 +163,23 @@ const MyTable = ({ filterValues }) => {
         </div>
       </div>
 
-      <div className="m-5 items-center w-[1300px]">
-        <div className="table-container overflow-x-auto overflow-y-auto" style={{ maxWidth: '1500px', maxHeight: '500px' }}>
+      <div className="m-2 items-center w-[1400px]">
+        <div className="table-container overflow-x-auto overflow-y-auto" style={{ maxWidth: '2000px', maxHeight: '500px' }}>
           <table className="table-auto w-full border-collapse border border-gray-800" style={{ width: '100%' }}>
-            <thead className="bg-[#2F657D] text-white">
-              <tr>
-                {columns.map((column, index) => (
-                  <th key={index} className="py-2 px-4 border border-[#343434]">
-                    {data.fields[column]}
-                  </th>
-                ))}
-                <th className="py-2 px-4 border border-[#343434] w-20"></th>
-              </tr>
-            </thead>
+               <thead className="bg-[#2F657D] text-white sticky top-0">
+                 <tr>
+                   {columns.map((column, index) => (
+                     <th key={index} className="py-2 px-4 border border-[#343434]">
+                       {data.fields[column]}
+                     </th>
+                   ))}
+                   <th className="py-2 px-4 border border-[#343434] w-20"></th>
+                 </tr>
+               </thead>
             <tbody>
               {filteredData.length > 0 ? (
                 filteredData.map((item, itemIndex) => (
-                  <tr 
+                  <tr
                     key={itemIndex}
                     className={itemIndex % 2 === 0 ? 'bg-gray-100 ' : 'bg-white'}
                     onMouseEnter={() => setHoveredRowIndex(itemIndex)}
@@ -191,12 +192,15 @@ const MyTable = ({ filterValues }) => {
                     ))}
                     <td className="py-2 px-4 border border-gray-800">
                       {hoveredRowIndex === itemIndex && (
-                        <span
-                          className="cursor-pointer"
-                          onClick={() => setShowChart(!showChart)}
-                        >
-                          📊
-                        </span>
+                   <span
+                   className="cursor-pointer"
+                   onClick={() => {
+                     setSelectedInstrumentId(item['instrument_id']);
+                     setShowChart(true);
+                   }}
+                 >
+                   📊
+                 </span>
                       )}
                     </td>
                   </tr>
@@ -213,8 +217,14 @@ const MyTable = ({ filterValues }) => {
         </div>
       </div>
 
-      {showChart && chartData && (
-        <MyChart chartData={chartData} />
+      {showChart && (
+        <Modal onClose={() => setShowChart(false)}>
+          {chartData ? (
+            <MyChart chartData={chartData} chartOptions={chartOptions} />
+          ) : (
+            <div>No chart data available.</div>
+          )}
+        </Modal>
       )}
     </div>
   );

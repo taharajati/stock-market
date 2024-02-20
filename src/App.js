@@ -6,6 +6,7 @@ import Filter01 from './components/Filters/Filter01/Filter01';
 import Filter02 from './components/Filters/Filter02/Filter02';
 import Filter04 from './components/Filters/Filter04/Filter04';
 import DateFilter from './components/Filters/datefilter/DateFilter';
+import MyChart from './components/charts/MyChart';
 
 
 
@@ -39,6 +40,7 @@ function App() {
       <Filter02 onFilterChange={handleFilter02Change} />
       <Filter04 onFilterChange={handleFilter04Change} />
       <DateFilter onFilterChange={handleDateFilterChange} />
+      
       <MyTable filterValues={filterValues} />
     </>
   );

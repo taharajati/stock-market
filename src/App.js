@@ -40,7 +40,7 @@ function App() {
       <Filter02 onFilterChange={handleFilter02Change} />
       <Filter04 onFilterChange={handleFilter04Change} />
       <DateFilter onFilterChange={handleDateFilterChange} />
-      
+  
       <MyTable filterValues={filterValues} />
     </>
   );

@@ -1,9 +1,8 @@
-// MyTable.js
 import React, { useEffect, useState } from 'react';
 import DataFilter from './DataFilter';
-import MyChart from '../charts/MyChart'; // Import the Chart component
-import { Line } from 'react-chartjs-2';
-import Modal from './Modal'; // Import the Modal component
+import MyChart from '../charts/MyChart';
+import Modal from './Modal';
+import SortableTableHeader from './SortableTableHeader';
 
 const MyTable = ({ filterValues }) => {
   const [intradata, setIntradata] = useState();
@@ -13,11 +12,13 @@ const MyTable = ({ filterValues }) => {
   const [error, setError] = useState(null);
   const [columns, setColumns] = useState([]);
   const [validGroups, setValidGroups] = useState([]);
-  const [chartData, setChartData] = useState(null);
-  const [chartOptions, setChartOptions] = useState(null);
   const [showChart, setShowChart] = useState(false);
-  const [hoveredRowIndex, setHoveredRowIndex] = useState(null);
-  const [selectedInstrumentId, setSelectedInstrumentId] = useState(null);
+  const [chartData, setChartData] = useState(null);
+  const [hoveredRowIndex, setHoveredRowIndex] = useState(null)
+  const [selectedInstrumentId, setSelectedInstrumentId] = useState(null); // Add this line
+  const [sortCriteria, setSortCriteria] = useState('');
+  const [sortOrder, setSortOrder] = useState('asc');
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,44 +68,28 @@ const MyTable = ({ filterValues }) => {
   useEffect(() => {
     const fetchChartData = async () => {
       try {
-        if (selectedInstrumentId) {
-          const chartResponse = await fetch(`https://api.optionscreener.ir/api/options/chart?instrument_id=${selectedInstrumentId}`);
-          if (!chartResponse.ok) {
-            throw new Error(`HTTP error! Status: ${chartResponse.status}`);
-          }
-    
-          const chartDataFromAPI = await chartResponse.json();
-    
-          // Use the actual data fetched from the API
-          setChartData({
-            labels: chartDataFromAPI.ChartData.labels,
-            datasets: [{
-              label: chartDataFromAPI.ChartData.datasets[0].label,
-              data: chartDataFromAPI.ChartData.datasets[0].data,
-              fill: chartDataFromAPI.ChartData.datasets[0].fill,
-              borderColor: chartDataFromAPI.ChartData.datasets[0].borderColor,
-            }],
-          });
-    
-          // Extracting necessary information from API response
-          const { options } = chartDataFromAPI;
-          const dynamicChartOptions = {
-            responsive: options.responsive,
-            maintainAspectRatio: options.maintainAspectRatio,
-            scales: options.scales,
-            annotation: options.annotation,
-          };
-    
-          setChartOptions(dynamicChartOptions);
+        // Fetch chart data from your API
+        const chartResponse = await fetch(`https://api.optionscreener.ir/api/options/chart?instrument_id=${selectedInstrumentId}`); // Replace 'YOUR_CHART_API_URL' with the actual API URL
+        if (!chartResponse.ok) {
+          throw new Error(`HTTP error! Status: ${chartResponse.status}`);
         }
+
+        const chartDataFromAPI = await chartResponse.json();
+
+        setChartData({
+          data: chartDataFromAPI.data,
+          annotations: chartDataFromAPI.annotations,
+          width: chartDataFromAPI.width,
+          height: chartDataFromAPI.height,
+        });
       } catch (error) {
         console.error('Error fetching chart data:', error);
         // Handle error accordingly
       }
-    
     };
+
     fetchChartData();
-  }, [selectedGroup, filterValues.filter04, selectedInstrumentId]);
+  }, [selectedInstrumentId]); // Empty dependency array to fetch data only once on component mount
 
   if (loading) {
     return <div>Loading...</div>;
@@ -117,46 +102,80 @@ const MyTable = ({ filterValues }) => {
   if (!intradata || !data || !data.groups || !data.groupscolumn) {
     return <div>No data available</div>;
   }
-
+// Add a function to format numbers with a thousand separator
+const formatNumberWithSeparator = (number) => {
+  return number.toLocaleString();
+};
   const filteredData = DataFilter({
     intradata,
     filterValues,
     columns,
   });
 
+  
+  // Sorting function
+  const sortData = (data, criteria, order) => {
+    return data.sort((a, b) => {
+      const valueA = typeof a[criteria] === 'number' ? a[criteria] : a[criteria]?.toLowerCase();
+      const valueB = typeof b[criteria] === 'number' ? b[criteria] : b[criteria]?.toLowerCase();
+
+      if (order === 'asc') {
+        return valueA > valueB ? 1 : -1;
+      } else {
+        return valueA < valueB ? 1 : -1;
+      }
+    });
+  };
+
+  // Handle sorting button click
+  const handleSort = (criteria) => {
+    if (sortCriteria === criteria) {
+      // Toggle sorting order if the same criteria is clicked again
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    } else {
+      // Set new sorting criteria and default to ascending order
+      setSortCriteria(criteria);
+      setSortOrder('asc');
+    }
+  };
+
   return (
     <div className="container mt-4 mx-auto p-4" dir="rtl">
       <div className="flex items-center justify-between mb-3 ">
         <div className="space-x-1">
-          {validGroups.map((groupKey) => (
-            <button
-              key={groupKey}
-              type="button "
-              className={`btn ${selectedGroup === groupKey ? 'px-4 py-2 bg-[#2F657D] text-white rounded-lg scale-105 transition duration-500' : 'px-3 py-1 bg-[#F4F2F2] rounded-md'}`}
-              onClick={() => setSelectedGroup(groupKey)}
-            >
-              {data.groups[groupKey]}
-            </button>
-          ))}
+        {validGroups.map((groupKey) => (
+  <button
+    key={groupKey}
+    type="button "
+    className={`btn ${selectedGroup === groupKey ? 'px-4 py-2 bg-[#2F657D] text-white rounded-lg scale-105 transition duration-500' : 'px-3 py-1 bg-[#F4F2F2] rounded-md'}`}
+    onClick={() => setSelectedGroup(groupKey)}
+  >
+    {data && data.groups && data.groups[groupKey] ? data.groups[groupKey] : 'Unknown Group'}
+  </button>
+))}
         </div>
       </div>
 
       <div className="m-2 items-center w-[1400px]">
         <div className="table-container overflow-x-auto overflow-y-auto" style={{ maxWidth: '2000px', maxHeight: '500px' }}>
           <table className="table-auto w-full border-collapse border border-gray-800" style={{ width: '100%' }}>
-               <thead className="bg-[#2F657D] text-white sticky top-0">
-                 <tr>
-                   {columns.map((column, index) => (
-                     <th key={index} className="py-2 px-4 border border-[#343434]">
-                       {data.fields[column]}
-                     </th>
-                   ))}
-                   <th className="py-2 px-4 border border-[#343434] w-20"></th>
-                 </tr>
-               </thead>
+          <thead className="bg-[#2F657D] text-white sticky top-0">
+  <tr>
+    {columns.map((column, index) => (
+      <SortableTableHeader
+        key={index}
+        column={{ fieldName: column, farsiName: data.fields[column] }}
+        criteria={sortCriteria}
+        order={sortOrder}
+        onSort={handleSort}
+      />
+    ))}
+    <th className="py-2 px-4 border border-[#343434] w-20"></th>
+  </tr>
+</thead>
             <tbody>
               {filteredData.length > 0 ? (
-                filteredData.map((item, itemIndex) => (
+                sortData(filteredData, sortCriteria, sortOrder).map((item, itemIndex) => (
                   <tr
                     key={itemIndex}
                     className={itemIndex % 2 === 0 ? 'bg-gray-100 ' : 'bg-white'}
@@ -165,20 +184,24 @@ const MyTable = ({ filterValues }) => {
                   >
                     {columns.map((column, columnIndex) => (
                       <td key={columnIndex} className="py-2 px-4 border border-gray-800">
-                        {item[column] instanceof Date ? item[column].toLocaleDateString() : item[column]}
+                        {item[column] instanceof Date
+                          ? item[column].toLocaleDateString()
+                          : typeof item[column] === 'number'
+                          ? formatNumberWithSeparator(item[column])
+                          : item[column]}
                       </td>
                     ))}
                     <td className="py-2 px-4 border border-gray-800">
                       {hoveredRowIndex === itemIndex && (
-                   <span
-                   className="cursor-pointer"
-                   onClick={() => {
-                     setSelectedInstrumentId(item['instrument_id']);
-                     setShowChart(true);
-                   }}
-                 >
-                   📊
-                 </span>
+                        <span
+                          className="cursor-pointer"
+                          onClick={() => {
+                            setSelectedInstrumentId(item['instrument_id']);
+                            setShowChart(true);
+                          }}
+                        >
+                          📊
+                        </span>
                       )}
                     </td>
                   </tr>
@@ -196,17 +219,22 @@ const MyTable = ({ filterValues }) => {
       </div>
 
       {showChart && (
-  <Modal onClose={() => setShowChart(false)}>
-    {chartData ? (
-      <MyChart data={chartData} options={chartOptions} />
-    ) : (
-      <div>No chart data available.</div>
-    )}
-  </Modal>
-)}
-      
+        <Modal onClose={() => setShowChart(false)}>
+          {chartData ? (
+            <MyChart
+              data={chartData.data}
+              annotations={chartData.annotations}
+              width={chartData.width}
+              height={chartData.height}
+            />
+          ) : (
+            <div>No chart data available.</div>
+          )}
+        </Modal>
+      )}
     </div>
   );
 };
+
 
 export default MyTable;

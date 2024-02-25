@@ -1,30 +1,35 @@
-import React, { useEffect, useRef } from 'react';
-import { Line } from 'react-chartjs-2';
-import Chart from 'chart.js/auto'; // Import Chart directly from chart.js
+// MyChart.js
+import React from 'react';
+import MyReChartLine from './MyReChartLine';
 
-const MyChart = ({ data, options }) => {
-  const chartRef = useRef(null);
+const MyChart = () => {
+  // Manually define LineChart data
+  const lineChartData = {
+    width: 600,
+    height: 300,
+    data: [
+      { "name": 1, "value": 10 },
+      { "name": 2, "value": 20 },
+      { "name": 3, "value": 15 },
+      { "name": 4, "value": 25 },
+      { "name": 5, "value": 18 },
+      // ... other data points
+    ],
+    annotations: [
+      { "x": 3, "color": "red", "label": "Annotation 1", "strokeDasharray":"3 3" },
+      { "x": 4, "color": "blue", "label": "Annotation 2", "strokeDasharray":"3 3"},
+      // ... other annotations
+    ]
+  };
 
-  useEffect(() => {
-    if (chartRef && chartRef.current) {
-      try {
-        const newChartInstance = new Chart(chartRef.current, {
-          type: 'line',
-          data: data,
-          options: options,
-        });
-  
-        // Cleanup previous chart before creating a new one
-        return () => {
-          newChartInstance.destroy();
-        };
-      } catch (error) {
-        console.error('Error creating chart:', error);
-      }
-    }
-  }, [data, options]);
-
-  return <canvas ref={chartRef} />;
+  return (
+    <MyReChartLine 
+      data={lineChartData.data}
+      annotations={lineChartData.annotations}
+      width={lineChartData.width}
+      height={lineChartData.height}
+    />
+  );
 };
 
 export default MyChart;

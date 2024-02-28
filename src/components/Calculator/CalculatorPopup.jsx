@@ -66,7 +66,7 @@ const CalculatorPopup = ({ onClose }) => {
 
   return (
     <Modal onClose={onClose}>
-      <div className="p-4 space-y-4">
+       <div className="p-4 space-y-4 max-w-full sm:max-w-md md:max-w-lg lg:max-w-xl mx-auto">
         {/* Form Row 1 */}
         <div className="flex space-x-4">
           <div className="flex-1">

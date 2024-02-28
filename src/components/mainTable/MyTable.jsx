@@ -130,7 +130,7 @@ const MyTable = ({ filterValues }) => {
   };
 
   return (
-    <div className="container mt-4 mx-auto p-4" dir="rtl">
+    <div className="container mt-4 mx-auto p-4 sm:w-full md:w-[80%] lg:w-[95%]" dir="rtl">
       <div className="flex items-center justify-between mb-3 ">
         <div className="space-x-1">
           {validGroups.map((groupKey) => (
@@ -146,7 +146,7 @@ const MyTable = ({ filterValues }) => {
         </div>
       </div>
 
-      <div className="m-2 items-center w-[1400px]">
+      <div className="m-2 items-center sm:w-full md:w-[90%] lg:w-[80%] xl:w-[95%]">
         <div className="table-container overflow-x-auto overflow-y-auto" style={{ maxWidth: '2000px', maxHeight: '500px' }}>
           <table className="table-auto w-full border-collapse border border-gray-800" style={{ width: '100%' }}>
             <thead className="bg-[#2F657D] text-white sticky top-0">

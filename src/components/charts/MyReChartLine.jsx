@@ -5,7 +5,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Referenc
 const MyReChartLine = ({ data, annotations, width, height, xInterval }) => {
   return (
     <div className="flex justify-center items-center h-full">
-      <LineChart width={width} height={height} data={data}>
+      <LineChart width="100%" height={height} data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" interval={xInterval} />
         <YAxis tickMargin={20} ali />

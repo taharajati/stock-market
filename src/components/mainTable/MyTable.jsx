@@ -1,3 +1,5 @@
+// MyTable.js
+
 import React, { useEffect, useState } from 'react';
 import DataFilter from './DataFilter';
 import MyChart from '../charts/MyChart';
@@ -5,21 +7,65 @@ import Modal from './Modal';
 import SortableTableHeader from './SortableTableHeader';
 import CalculatorPopup from '../Calculator/CalculatorPopup';
 
-const MyTable = ({ filterValues }) => {
-  const [intradata, setIntradata] = useState();
-  const [data, setData] = useState();
-  const [selectedGroup, setSelectedGroup] = useState('summary');
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [columns, setColumns] = useState([]);
-  const [validGroups, setValidGroups] = useState([]);
-  const [showChart, setShowChart] = useState(false);
-  const [chartData, setChartData] = useState(null);
-  const [hoveredRowIndex, setHoveredRowIndex] = useState(null);
-  const [selectedInstrumentId, setSelectedInstrumentId] = useState(null);
-  const [sortCriteria, setSortCriteria] = useState('');
-  const [sortOrder, setSortOrder] = useState('asc');
-  const [calculatorVisible, setCalculatorVisible] = useState(false);
+  const MyTable = ({ filterValues }) => {
+    const [intradata, setIntradata] = useState();
+    const [data, setData] = useState();
+    const [selectedGroup, setSelectedGroup] = useState('summary');
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [columns, setColumns] = useState([]);
+    const [validGroups, setValidGroups] = useState([]);
+    const [showChart, setShowChart] = useState(false);
+    const [chartData, setChartData] = useState(null);
+    const [hoveredRowIndex, setHoveredRowIndex] = useState(null);
+    const [selectedInstrumentId, setSelectedInstrumentId] = useState(null);
+    const [sortCriteria, setSortCriteria] = useState('');
+    const [sortOrder, setSortOrder] = useState('asc');
+    const [calculatorVisible, setCalculatorVisible] = useState(false);
+
+    const handlePostRequest = async (selectedRowData) => {
+      try {
+        const postData = {
+          stock: [],
+          options: [
+            {
+              option_type: selectedRowData.option_type,
+              premium: selectedRowData.buy_price,
+              strike_price: selectedRowData.strike_price,
+              position: 'buyer',
+            },
+          ],
+        };
+    
+        const postResponse = await fetch(`https://api.optionscreener.ir/api/options/chart`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(postData),
+        });
+    
+        if (!postResponse.ok) {
+          throw new Error(`HTTP error! Status: ${postResponse.status}`);
+        }
+    
+        const responseData = await postResponse.json();
+        console.log('POST Response:', responseData);
+    
+        // Update chart data state
+        setChartData({
+          data: responseData.data,
+          annotations: responseData.annotations,
+          width: responseData.width,
+          height: responseData.height,
+        });
+    
+        // Open chart modal
+        setShowChart(true);
+      } catch (error) {
+        console.error('Error in POST request:', error);
+      }
+    };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,29 +107,6 @@ const MyTable = ({ filterValues }) => {
     fetchData();
   }, [selectedGroup, filterValues.filter04]);
 
-  useEffect(() => {
-    const fetchChartData = async () => {
-      try {
-        const chartResponse = await fetch(`https://api.optionscreener.ir/api/options/chart?instrument_id=${selectedInstrumentId}`);
-        if (!chartResponse.ok) {
-          throw new Error(`HTTP error! Status: ${chartResponse.status}`);
-        }
-
-        const chartDataFromAPI = await chartResponse.json();
-
-        setChartData({
-          data: chartDataFromAPI.data,
-          annotations: chartDataFromAPI.annotations,
-          width: chartDataFromAPI.width,
-          height: chartDataFromAPI.height,
-        });
-      } catch (error) {
-        console.error('Error fetching chart data:', error);
-      }
-    };
-
-    fetchChartData();
-  }, [selectedInstrumentId]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -149,7 +172,7 @@ const MyTable = ({ filterValues }) => {
       <div className="m-2 items-center sm:w-full md:w-[90%] lg:w-[80%] xl:w-[95%]">
         <div className="table-container overflow-x-auto overflow-y-auto" style={{ maxWidth: '2000px', maxHeight: '500px' }}>
           <table className="table-auto w-full border-collapse border border-gray-800" style={{ width: '100%' }}>
-            <thead className="bg-[#2F657D] text-white sticky top-0">
+            <thead className="bg-[#2F657D] text-white sticky top-0 z-2">
               <tr>
                 {columns.map((column, index) => (
                   <SortableTableHeader
@@ -164,62 +187,58 @@ const MyTable = ({ filterValues }) => {
               </tr>
             </thead>
             <tbody>
-              {filteredData.length > 0 ? (
-                sortData(filteredData, sortCriteria, sortOrder).map((item, itemIndex) => (
-                  <tr
-                    key={itemIndex}
-                    className={itemIndex % 2 === 0 ? 'bg-gray-100 ' : 'bg-white'}
-                    onMouseEnter={() => setHoveredRowIndex(itemIndex)}
-                    onMouseLeave={() => setHoveredRowIndex(null)}
+        {filteredData.length > 0 ? (
+          sortData(filteredData, sortCriteria, sortOrder).map((item, itemIndex) => (
+            <tr
+              key={itemIndex}
+              className={itemIndex % 2 === 0 ? 'bg-gray-100 ' : 'bg-white'}
+              onMouseEnter={() => setHoveredRowIndex(itemIndex)}
+            >
+              {columns.map((column, columnIndex) => (
+                <td key={columnIndex} className="py-2 px-4 border border-gray-800">
+                  {item[column] instanceof Date
+                    ? item[column].toLocaleDateString()
+                    : typeof item[column] === 'number'
+                    ? formatNumberWithSeparator(item[column])
+                    : item[column]}
+                </td>
+              ))}
+              <td className="py-2 px-4 border border-gray-800">
+                {hoveredRowIndex === itemIndex && (
+                <span
+                className="cursor-pointer"
+                onClick={() => {
+                  handlePostRequest(item);
+                  setSelectedInstrumentId(item['instrument_id']);
+                  // Remove setShowChart(true) from here
+                }}
+              >
+                📊
+              </span>
+                )}
+                {/* Open Calculator Button */}
+                <span className="flex items-center space-x-2"
+                
+            
+                    onClick={() => setCalculatorVisible(true)}
                   >
-                    {columns.map((column, columnIndex) => (
-                      <td key={columnIndex} className="py-2 px-4 border border-gray-800">
-                        {item[column] instanceof Date
-                          ? item[column].toLocaleDateString()
-                          : typeof item[column] === 'number'
-                          ? formatNumberWithSeparator(item[column])
-                          : item[column]}
-                      </td>
-                    ))}
-                    <td className="py-2 px-4 border border-gray-800">
-                      {hoveredRowIndex === itemIndex && (
-                        <span
-                          className="cursor-pointer"
-                          onClick={() => {
-                            setSelectedInstrumentId(item['instrument_id']);
-                            setShowChart(true);
-                          }}
-                        >
-                          📊
-                        </span>
-                        
-                      )}
-                        {/* Open Calculator Button */}
-      <div className="flex items-center space-x-2">
-        <button
-          className="px-4 py-2  text-white rounded-lg scale-105 transition duration-500"
-          onClick={() => setCalculatorVisible(true)}
-        >
-          💰
-        </button>
-      
-      </div>
-                    </td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan={columns.length + 1} className="py-2 px-4 border border-gray-800">
-                    No matching data
-                  </td>
-                </tr>
-              )}
-            </tbody>
+                    💰
+                 
+                </span>
+              </td>
+            </tr>
+          ))
+        ) : (
+          <tr>
+            <td colSpan={columns.length + 1} className="py-2 px-4 border border-gray-800">
+              No matching data
+            </td>
+          </tr>
+        )}
+      </tbody>
           </table>
         </div>
       </div>
-
-    
 
       {/* Calculator Popup */}
       {calculatorVisible && (
@@ -228,19 +247,14 @@ const MyTable = ({ filterValues }) => {
 
       {/* Chart Modal */}
       {showChart && (
-        <Modal onClose={() => setShowChart(false)}>
-          {chartData ? (
-            <MyChart
-              data={chartData.data}
-              annotations={chartData.annotations}
-              width={chartData.width}
-              height={chartData.height}
-            />
-          ) : (
-            <div>No chart data available.</div>
-          )}
-        </Modal>
-      )}
+  <Modal onClose={() => setShowChart(false)}>
+    {chartData ? (
+       <MyChart chartData={chartData} showChart={showChart} setShowChart={setShowChart} />
+    ) : (
+      <div>No chart data available.</div>
+    )}
+  </Modal>
+)}
     </div>
   );
 };

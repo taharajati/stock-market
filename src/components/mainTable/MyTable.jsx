@@ -6,6 +6,8 @@ import MyChart from '../charts/MyChart';
 import Modal from './Modal';
 import SortableTableHeader from './SortableTableHeader';
 import CalculatorPopup from '../Calculator/CalculatorPopup';
+import { FaChartLine } from "react-icons/fa6";
+import { IoMdCalculator } from "react-icons/io";
 
   const MyTable = ({ filterValues }) => {
     const [intradata, setIntradata] = useState();
@@ -22,6 +24,7 @@ import CalculatorPopup from '../Calculator/CalculatorPopup';
     const [sortCriteria, setSortCriteria] = useState('');
     const [sortOrder, setSortOrder] = useState('asc');
     const [calculatorVisible, setCalculatorVisible] = useState(false);
+    
 
     const handlePostRequest = async (selectedRowData) => {
       try {
@@ -170,7 +173,11 @@ import CalculatorPopup from '../Calculator/CalculatorPopup';
       </div>
 
       <div className="m-2 items-center sm:w-full md:w-[90%] lg:w-[80%] xl:w-[95%]">
-        <div className="table-container overflow-x-auto overflow-y-auto" style={{ maxWidth: '2000px', maxHeight: '500px' }}>
+        <div
+          className="table-container overflow-x-auto overflow-y-auto"
+          style={{ maxWidth: '2000px', maxHeight: '500px' }}
+          onMouseLeave={() => setHoveredRowIndex(null)}
+        >
           <table className="table-auto w-full border-collapse border border-gray-800" style={{ width: '100%' }}>
             <thead className="bg-[#2F657D] text-white sticky top-0 z-2">
               <tr>
@@ -187,74 +194,106 @@ import CalculatorPopup from '../Calculator/CalculatorPopup';
               </tr>
             </thead>
             <tbody>
-        {filteredData.length > 0 ? (
-          sortData(filteredData, sortCriteria, sortOrder).map((item, itemIndex) => (
-            <tr
-              key={itemIndex}
-              className={itemIndex % 2 === 0 ? 'bg-gray-100 ' : 'bg-white'}
-              onMouseEnter={() => setHoveredRowIndex(itemIndex)}
-            >
-              {columns.map((column, columnIndex) => (
-                <td key={columnIndex} className="py-2 px-4 border border-gray-800">
-                  {item[column] instanceof Date
-                    ? item[column].toLocaleDateString()
-                    : typeof item[column] === 'number'
-                    ? formatNumberWithSeparator(item[column])
-                    : item[column]}
-                </td>
-              ))}
-              <td className="py-2 px-4 border border-gray-800">
-                {hoveredRowIndex === itemIndex && (
-                <span
-                className="cursor-pointer"
-                onClick={() => {
-                  handlePostRequest(item);
-                  setSelectedInstrumentId(item['instrument_id']);
-                  // Remove setShowChart(true) from here
-                }}
-              >
-                📊
-              </span>
-                )}
-                {/* Open Calculator Button */}
-                <span className="flex items-center space-x-2"
-                
-            
-                    onClick={() => setCalculatorVisible(true)}
-                  >
-                    💰
-                 
-                </span>
-              </td>
-            </tr>
-          ))
-        ) : (
-          <tr>
-            <td colSpan={columns.length + 1} className="py-2 px-4 border border-gray-800">
-              No matching data
-            </td>
-          </tr>
-        )}
-      </tbody>
+              {filteredData.length > 0 ? (
+                sortData(filteredData, sortCriteria, sortOrder).map((item, itemIndex) => {
+                  const firstNonEmptyColumnIndex = columns.findIndex(
+                    (column) => item[column] !== null && item[column] !== undefined && item[column] !== ''
+                  );
+
+                  return (
+                    <tr
+                      key={itemIndex}
+                      className={itemIndex % 2 === 0 ? 'bg-gray-100 ' : 'bg-white'}
+                      onMouseEnter={() => setHoveredRowIndex(itemIndex)}
+                    >
+                      {/* Render icons in a straight line when hovered */}
+                      {hoveredRowIndex === itemIndex && firstNonEmptyColumnIndex !== -1 && (
+                        <>
+                          {/* Render other columns up to the first non-empty column */}
+                          {columns.slice(0, firstNonEmptyColumnIndex).map((column, columnIndex) => (
+                            <td key={columnIndex} className="py-2 px-4 border border-gray-800">
+                              {item[column] instanceof Date
+                                ? item[column].toLocaleDateString()
+                                : typeof item[column] === 'number'
+                                ? formatNumberWithSeparator(item[column])
+                                : item[column]}
+                            </td>
+                          ))}
+
+                          {/* Render icons in a straight line */}
+                          <td className="py-2 gap-4  px-4 flex items-center space-x-2 mx-3  ">
+                            <span
+                              className="cursor-pointer text-2xl"
+                              onClick={() => {
+                                handlePostRequest(item);
+                                setSelectedInstrumentId(item['instrument_id']);
+                                // Remove setShowChart(true) from here
+                              }}
+                            >
+                              <FaChartLine />
+                            </span>
+                            <span
+                              className="cursor-pointer text-2xl"
+                              onClick={() => setCalculatorVisible(true)}
+                            >
+                              <IoMdCalculator />
+
+                            </span>
+                            {/* Add more icons if needed */}
+                          </td>
+
+                          {/* Render remaining columns after the first non-empty column */}
+                          {columns.slice(firstNonEmptyColumnIndex + 1).map((column, columnIndex) => (
+                            <td key={columnIndex} className="py-2 px-4 border border-gray-800">
+                              {item[column] instanceof Date
+                                ? item[column].toLocaleDateString()
+                                : typeof item[column] === 'number'
+                                ? formatNumberWithSeparator(item[column])
+                                : item[column]}
+                            </td>
+                          ))}
+                        </>
+                      )}
+
+                      {/* Render other columns if no icons are displayed */}
+                      {hoveredRowIndex !== itemIndex &&
+                        columns.map((column, columnIndex) => (
+                          <td key={columnIndex} className="py-2 px-4 border border-gray-800">
+                            {item[column] instanceof Date
+                              ? item[column].toLocaleDateString()
+                              : typeof item[column] === 'number'
+                              ? formatNumberWithSeparator(item[column])
+                              : item[column]}
+                          </td>
+                        ))}
+                    </tr>
+                  );
+                })
+              ) : (
+                <tr>
+                  <td colSpan={columns.length} className="py-2 px-4 border border-gray-800">
+                    No matching data
+                  </td>
+                </tr>
+              )}
+            </tbody>
           </table>
         </div>
       </div>
 
       {/* Calculator Popup */}
-      {calculatorVisible && (
-        <CalculatorPopup onClose={() => setCalculatorVisible(false)} />
-      )}
+      {calculatorVisible && <CalculatorPopup onClose={() => setCalculatorVisible(false)} />}
 
       {/* Chart Modal */}
       {showChart && (
-  <Modal onClose={() => setShowChart(false)}>
-    {chartData ? (
-       <MyChart chartData={chartData} showChart={showChart} setShowChart={setShowChart} />
-    ) : (
-      <div>No chart data available.</div>
-    )}
-  </Modal>
-)}
+        <Modal onClose={() => setShowChart(false)}>
+          {chartData ? (
+            <MyChart chartData={chartData} showChart={showChart} setShowChart={setShowChart} />
+          ) : (
+            <div>No chart data available.</div>
+          )}
+        </Modal>
+      )}
     </div>
   );
 };

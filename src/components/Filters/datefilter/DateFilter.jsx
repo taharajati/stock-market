@@ -52,17 +52,16 @@ const DateFilter = ({ onFilterChange }) => {
     return `${year}${month}${day}`;
   };
   return (
-    <div>
-      <label>Start Date:</label>
-      <DatePicker
-        calendar={persian}
-        locale={persian_fa}
-        value={startDate}
-        onChange={(date) => setStartDate(date)}
-        calendarPosition="bottom-right"
-      />
+    <>
+    
+    <div className='flex  float-right'>
+    <div className=' float-left'>
+        <button className='mx-2 ' onClick={handleFilterClick}>
+          اعمال
+        </button>
+        </div>
 
-      <label>End Date:</label>
+    <div className='flex items-center mb-4 '>
       <DatePicker
         calendar={persian}
         locale={persian_fa}
@@ -70,10 +69,24 @@ const DateFilter = ({ onFilterChange }) => {
         onChange={(date) => setEndDate(date)}
         calendarPosition="bottom-right"
       />
-
-      <button onClick={handleFilterClick}>Apply Filter</button>
+      <label className='ml-2'> : تاریخ پایان  </label>
     </div>
-  );
+
+    <div className='flex items-center mb-4 mx-6'>
+      <DatePicker
+        calendar={persian}
+        locale={persian_fa}
+        value={startDate}
+        onChange={(date) => setStartDate(date)}
+        calendarPosition="bottom-right"
+      />
+      <label className='ml-2'> : تاریخ شروع   </label>
+    </div>
+     
+  </div>
+
+</>
+);
 };
 
 export default DateFilter;

@@ -1,53 +1,25 @@
-import './style.css';
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import './style.css'
 import Nav from './components/nav/Nav';
-import MyTable from './components/mainTable/MyTable';
-import Filter01 from './components/Filters/Filter01/Filter01';
-import Filter02 from './components/Filters/Filter02/Filter02';
-import Filter04 from './components/Filters/Filter04/Filter04';
-import DateFilter from './components/Filters/datefilter/DateFilter';
-import MyChart from './components/charts/MyChart';
-
-
+import Login from './components/Login/Login';
+import UserList from './components/UserList/UserList';
+import BranchList from './components/BranchList/BranchList';
 
 function App() {
-  const [filterValues, setFilterValues] = useState({
-    filter01: '',
-    filter02: '', // Add filter02 state
-    startDate: null,
-    endDate: null,
-    filter04: '',
-    filter05: 1,
-  });
-
-  const handleFilter02Change = (value) => {
-    setFilterValues({ ...filterValues, filter02: value });
-  };
-
-  const handleDateFilterChange = (dateFilterValues) => {
-    setFilterValues({ ...filterValues, ...dateFilterValues });
-  };
-
-  const handleFilter04Change = (optionType) => {
-    setFilterValues({ ...filterValues, filter04: optionType });
-    console.log('Filter04 Value:', optionType);
-  };
   return (
-    <>
-    
-      <Nav />
-     
-      <Filter01 setFilterValue={(value) => setFilterValues({ ...filterValues, filter01: value })} />
-      <Filter02 onFilterChange={handleFilter02Change} />
-      <Filter04 onFilterChange={handleFilter04Change} />
-     
-
-      <DateFilter onFilterChange={handleDateFilterChange} />
-
-      <br />
-  
-      <MyTable filterValues={filterValues} />
-    </>
+    <Router>
+      <div>
+        <Nav />
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/users" element={<UserList />} />
+          <Route path="/branches" element={<BranchList/>} />
+          {/* Add more routes for other pages */}
+          <Route path="/" element={<Navigate to="/login" />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

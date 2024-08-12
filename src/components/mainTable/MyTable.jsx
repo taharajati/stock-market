@@ -25,6 +25,10 @@ import { IoMdCalculator } from "react-icons/io";
     const [sortOrder, setSortOrder] = useState('asc');
     const [calculatorVisible, setCalculatorVisible] = useState(false);
     const columnStyles = {
+    symbol_fa: {
+      style: { width: '150px', textAlign: 'right', color: 'black',fontWeight:"bold" },
+      tooltip: 'This is column 2',
+    },
     a_factor: {
       style: { width: '100px', textAlign: 'center', color: 'red' },
       tooltip: 'This is column 1',
@@ -249,10 +253,7 @@ import { IoMdCalculator } from "react-icons/io";
       style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
       tooltip: 'This is column 2',
     },
-    symbol_fa: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
-    },
+
 
     trades_count: {
       style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },

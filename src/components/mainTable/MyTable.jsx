@@ -280,6 +280,10 @@ import { IoMdCalculator } from "react-icons/io";
             return { ...baseStyle, color: 'rgb(102,43,50)' ,backgroundColor:'rgb(196,132,146)'};
         } else if (columnName === 'bs_price_to_buy_price' && value < 0) {
             return { ...baseStyle, color: 'rgb(40,102,50)' ,backgroundColor:'rgb(163,240,173)' };
+        } else if (columnName === 'bs_price_to_sell_price' && value >= 0) {
+            return { ...baseStyle, color: 'rgb(102,43,50)' ,backgroundColor:'rgb(196,132,146)'};
+        } else if (columnName === 'bs_price_to_sell_price' && value < 0) {
+            return { ...baseStyle, color: 'rgb(40,102,50)' ,backgroundColor:'rgb(163,240,173)' };
         }
 
 
@@ -416,7 +420,7 @@ import { IoMdCalculator } from "react-icons/io";
   };
 
   return (
-    <div className="container mt-4 mx-auto p-4 sm:w-full md:w-[80%] lg:w-[120%]" dir="rtl">
+    <div className="container mt-4 mx-auto p-4 sm:w-full " dir="rtl">
       <div className="flex items-center justify-between mb-3 ">
         <div className="space-x-1">
           {validGroups.map((groupKey) => (
@@ -432,7 +436,7 @@ import { IoMdCalculator } from "react-icons/io";
         </div>
       </div>
 
-      <div className="m-2 items-center sm:w-full lg:w-[80%] xl:w-[95%]">
+      <div className="m-2 items-center ">
         <div
           className="table-container overflow-x-auto overflow-y-auto"
           style={{ maxWidth: '3000px', maxHeight: '500px' }}

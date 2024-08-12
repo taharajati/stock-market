@@ -112,7 +112,7 @@ import { IoMdCalculator } from "react-icons/io";
 
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>در حال دریافت دیتا ...</div>;
   }
 
   if (error) {
@@ -156,7 +156,7 @@ import { IoMdCalculator } from "react-icons/io";
   };
 
   return (
-    <div className="container mt-4 mx-auto p-4 sm:w-full md:w-[80%] lg:w-[95%]" dir="rtl">
+    <div className="container mt-4 mx-auto p-4 sm:w-full md:w-[80%] lg:w-[120%]" dir="rtl">
       <div className="flex items-center justify-between mb-3 ">
         <div className="space-x-1">
           {validGroups.map((groupKey) => (
@@ -172,13 +172,13 @@ import { IoMdCalculator } from "react-icons/io";
         </div>
       </div>
 
-      <div className="m-2 items-center sm:w-full md:w-[90%] lg:w-[80%] xl:w-[95%]">
+      <div className="m-2 items-center sm:w-full lg:w-[80%] xl:w-[95%]">
         <div
           className="table-container overflow-x-auto overflow-y-auto"
-          style={{ maxWidth: '2000px', maxHeight: '500px' }}
-          onMouseLeave={() => setHoveredRowIndex(null)}
+          style={{ maxWidth: '3000px', maxHeight: '500px' }}
+          //onMouseLeave={() => setHoveredRowIndex(null)}
         >
-          <table className="table-auto w-full border-collapse border border-gray-800" style={{ width: '100%' }}>
+          <table className="table-auto  border-collapse border border-gray-800" style={{ width: '150%' }}>
             <thead className="bg-[#2F657D] text-white sticky top-0 z-2">
               <tr>
                 {columns.map((column, index) => (
@@ -234,7 +234,7 @@ import { IoMdCalculator } from "react-icons/io";
                             </span>
                             <span
                               className="cursor-pointer text-2xl"
-                              onClick={() => setCalculatorVisible(true)}
+                              //onClick={() => setCalculatorVisible(true)}
                             >
                               <IoMdCalculator />
 

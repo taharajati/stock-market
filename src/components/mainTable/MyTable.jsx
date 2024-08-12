@@ -63,15 +63,15 @@ import { IoMdCalculator } from "react-icons/io";
       style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
       tooltip: 'This is column 2',
     },
-    ,industry_name: {
+    industry_name: {
       style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
       tooltip: 'This is column 2',
     },
-    ,instrument_code: {
+    instrument_code: {
       style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
       tooltip: 'This is column 2',
     },
-    ,instrument_id: {
+    instrument_id: {
       style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
       tooltip: 'This is column 2',
     },

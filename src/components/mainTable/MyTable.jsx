@@ -27,323 +27,243 @@ import { IoMdCalculator } from "react-icons/io";
     const columnStyles = {
     symbol_fa: {
       style: { width: '150px', textAlign: 'right', color: 'black',fontWeight:"bold" },
-      tooltip: 'This is column 2',
+
     },
     a_factor: {
-      style: { width: '100px', textAlign: 'center', color: 'red' },
-      tooltip: 'This is column 1',
+      style: { textAlign: 'center', color: 'black' },
+
     },
     b_factor: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
+
     },
     c_factor: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     contract_size: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     days_to_maturity: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     days_to_maturity_business_days: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     begin_date: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
 
     end_date: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
 
     industry_code: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     industry_name: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     instrument_code: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     instrument_id: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
 
 
     average_spread: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     average_spread_percent_of_mid_price: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
 
 
     bid_ask_spread_percent: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     bid_ask_spread_score: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
 
     bs_price_to_buy_price: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center'},
     },
     bs_price_to_sell_price: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center'},
     },
     buy_positions: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     buy_price: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
 
     close: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
 
 
     final: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     high: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     implied_volatility_last: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     implied_volatility_max_all: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },implied_volatility_max_month: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },implied_volatility_mean_month: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     implied_volatility_min_all: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     implied_volatility_min_month: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     implied_volatility_rank: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     implied_volatility_to_average_month: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },implied_volatility_to_same_ua_implied_volatility_percent: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },implied_volatility_vs_realized_volatility_month: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
 
     intrinsic_value_bs: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     is_tab: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     liquidity_score: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     low: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     open: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     notional_value: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     old: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
 
     open_interest_score: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     option_status: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     option_type: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     option_type_fa: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     probability_of_profit: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     put_call_ratio: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     rho: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     theta: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     delta: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     gamma: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
-    },
-    same_ua_average_implied_volatility: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
-    },
-    sell_positions: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
-    },
-    sell_price: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
-    },
-    strike_price: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
-    },
-
-
-    trades_count: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
-    },
-    ua_close: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
-    },
-    ua_final: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
-    },
-    ua_instrument_code: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
-    },
-    ua_instrument_id: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
-    },
-    ua_instrument_symbol_fa: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
-    },
-    ua_volatility_day: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
-    },
-    ua_volatility_week: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
-    },
-    ua_volatility_year: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
-    },
-    ua_volume: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
-    },
-    ua_volume_count: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     vega: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
+
+    same_ua_average_implied_volatility: {
+      style: { textAlign: 'center', color: 'black' },
+    },
+    sell_positions: {
+      style: { textAlign: 'center', color: 'black' },
+    },
+    sell_price: {
+      style: { textAlign: 'center', color: 'black' },
+    },
+    strike_price: {
+      style: { textAlign: 'center', color: 'black' },
+    },
+
+    trades_count: {
+      style: { textAlign: 'center', color: 'black' },
+    },
+    ua_close: {
+      style: { textAlign: 'center', color: 'black' },
+    },
+    ua_final: {
+      style: { textAlign: 'center', color: 'black' },
+    },
+    ua_instrument_code: {
+      style: { textAlign: 'center', color: 'black' },
+    },
+    ua_instrument_id: {
+      style: { textAlign: 'center', color: 'black' },
+    },
+    ua_instrument_symbol_fa: {
+      style: { textAlign: 'center', color: 'black' },
+    },
+    ua_volatility_day: {
+      style: { textAlign: 'center', color: 'black' },
+    },
+    ua_volatility_week: {
+      style: { textAlign: 'center', color: 'black' },
+    },
+    ua_volatility_year: {
+      style: { textAlign: 'center', color: 'black' },
+    },
+    ua_volume: {
+      style: { textAlign: 'center', color: 'black' },
+    },
+    ua_volume_count: {
+      style: { textAlign: 'center', color: 'black' },
+    },
+
     volatility_skew_horizontal: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     volatility_skew_horizontal_value: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     volatility_skew_vertical: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     volatility_skew_vertical_value: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     volume: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     volume_count: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     volume_score: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
     yesterday_positions: {
-      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
-      tooltip: 'This is column 2',
+      style: { textAlign: 'center', color: 'black' },
     },
-
-
-
-
-
-
-
-
-
 
     // Add more columns as needed
   };
@@ -356,7 +276,12 @@ import { IoMdCalculator } from "react-icons/io";
             return { ...baseStyle, backgroundColor: 'red' };
         } else if (columnName === 'delta' && value >= 0) {
             return { ...baseStyle, color: 'lightgreen' };
+        } else if (columnName === 'bs_price_to_buy_price' && value >= 0) {
+            return { ...baseStyle, color: 'rgb(102,43,50)' ,backgroundColor:'rgb(196,132,146)'};
+        } else if (columnName === 'bs_price_to_buy_price' && value < 0) {
+            return { ...baseStyle, color: 'rgb(40,102,50)' ,backgroundColor:'rgb(163,240,173)' };
         }
+
 
         return baseStyle; // Return the base style if no condition matches
     };

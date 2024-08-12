@@ -24,7 +24,341 @@ import { IoMdCalculator } from "react-icons/io";
     const [sortCriteria, setSortCriteria] = useState('');
     const [sortOrder, setSortOrder] = useState('asc');
     const [calculatorVisible, setCalculatorVisible] = useState(false);
-    
+    const columnStyles = {
+    a_factor: {
+      style: { width: '100px', textAlign: 'center', color: 'red' },
+      tooltip: 'This is column 1',
+    },
+    b_factor: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    c_factor: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    contract_size: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    days_to_maturity: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    days_to_maturity_business_days: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    begin_date: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+
+    end_date: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+
+    industry_code: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    ,industry_name: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    ,instrument_code: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    ,instrument_id: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+
+
+    average_spread: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    average_spread_percent_of_mid_price: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+
+
+    bid_ask_spread_percent: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    bid_ask_spread_score: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+
+    bs_price_to_buy_price: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    bs_price_to_sell_price: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    buy_positions: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    buy_price: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+
+    close: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+
+
+    final: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    high: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    implied_volatility_last: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    implied_volatility_max_all: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },implied_volatility_max_month: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },implied_volatility_mean_month: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    implied_volatility_min_all: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    implied_volatility_min_month: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    implied_volatility_rank: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    implied_volatility_to_average_month: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },implied_volatility_to_same_ua_implied_volatility_percent: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },implied_volatility_vs_realized_volatility_month: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+
+    intrinsic_value_bs: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    ,is_tab: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    ,liquidity_score: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    ,low: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    open: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    ,notional_value: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    ,old: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    ,
+    ,open_interest_score: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    ,option_status: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    ,option_type: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    ,option_type_fa: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    ,probability_of_profit: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    put_call_ratio: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    rho: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    theta: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    delta: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    gamma: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    same_ua_average_implied_volatility: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    sell_positions: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    sell_price: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    strike_price: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    symbol_fa: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+
+    trades_count: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    ua_close: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    ua_final: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    ua_instrument_code: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    ua_instrument_id: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    ua_instrument_symbol_fa: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    ua_volatility_day: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    ua_volatility_week: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    ua_volatility_year: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    ua_volume: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    ua_volume_count: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    vega: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    volatility_skew_horizontal: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    volatility_skew_horizontal_value: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    volatility_skew_vertical: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    volatility_skew_vertical_value: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    volume: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    volume_count: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    volume_score: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+    yesterday_positions: {
+      style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
+      tooltip: 'This is column 2',
+    },
+
+
+
+
+
+
+
+
+
+
+    // Add more columns as needed
+  };
+
+    const getCellStyle = (columnName, value) => {
+        let baseStyle = columnStyles[columnName]?.style || {};
+
+        // Example conditional styling logic
+        if (columnName === 'delta' && value < 0) {
+            return { ...baseStyle, backgroundColor: 'red' };
+        } else if (columnName === 'delta' && value >= 0) {
+            return { ...baseStyle, color: 'lightgreen' };
+        }
+
+        return baseStyle; // Return the base style if no condition matches
+    };
 
     const handlePostRequest = async (selectedRowData) => {
       try {
@@ -211,7 +545,10 @@ import { IoMdCalculator } from "react-icons/io";
                         <>
                           {/* Render other columns up to the first non-empty column */}
                           {columns.slice(0, firstNonEmptyColumnIndex).map((column, columnIndex) => (
-                            <td key={columnIndex} className="py-2 px-4 border border-gray-800">
+
+                            <td key={columnIndex}
+                            className="py-2 px-4 border border-gray-800"
+                            style={getCellStyle(column, row[column])}>
                               {item[column] instanceof Date
                                 ? item[column].toLocaleDateString()
                                 : typeof item[column] === 'number'

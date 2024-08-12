@@ -168,15 +168,15 @@ import { IoMdCalculator } from "react-icons/io";
       style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
       tooltip: 'This is column 2',
     },
-    ,is_tab: {
+    is_tab: {
       style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
       tooltip: 'This is column 2',
     },
-    ,liquidity_score: {
+    liquidity_score: {
       style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
       tooltip: 'This is column 2',
     },
-    ,low: {
+    low: {
       style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
       tooltip: 'This is column 2',
     },
@@ -184,32 +184,32 @@ import { IoMdCalculator } from "react-icons/io";
       style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
       tooltip: 'This is column 2',
     },
-    ,notional_value: {
+    notional_value: {
       style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
       tooltip: 'This is column 2',
     },
-    ,old: {
+    old: {
       style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
       tooltip: 'This is column 2',
     },
-    ,
-    ,open_interest_score: {
+
+    open_interest_score: {
       style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
       tooltip: 'This is column 2',
     },
-    ,option_status: {
+    option_status: {
       style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
       tooltip: 'This is column 2',
     },
-    ,option_type: {
+    option_type: {
       style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
       tooltip: 'This is column 2',
     },
-    ,option_type_fa: {
+    option_type_fa: {
       style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
       tooltip: 'This is column 2',
     },
-    ,probability_of_profit: {
+    probability_of_profit: {
       style: { width: '150px', textAlign: 'left', backgroundColor: 'lightgrey' },
       tooltip: 'This is column 2',
     },

@@ -546,7 +546,7 @@ import { IoMdCalculator } from "react-icons/io";
                           {/* Render other columns up to the first non-empty column */}
                           {columns.slice(0, firstNonEmptyColumnIndex).map((column, columnIndex) => (
 
-                            <td key={columnIndex} className="py-2 px-4 border border-gray-800" style={getCellStyle(column, row[column])}>
+                            <td key={columnIndex} className="py-2 px-4 border border-gray-800" style={getCellStyle(column, item[column])}>
                               {item[column] instanceof Date
                                 ? item[column].toLocaleDateString()
                                 : typeof item[column] === 'number'

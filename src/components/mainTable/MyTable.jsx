@@ -490,7 +490,9 @@ import { IoMdCalculator } from "react-icons/io";
                           ))}
 
                           {/* Render icons in a straight line */}
-                          <td className="py-2 gap-4  px-4 flex items-center space-x-2 mx-3  ">
+                          <td className="py-2 gap-4  px-4 flex space-x-2 mx-3  " style={getCellStyle(column, item[column]),
+                            backgroundColor: 'your-background-color',  // Override background color
+                                fontWeight: 'bold'}>
                             <span
                               className="cursor-pointer text-2xl"
                               onClick={() => {

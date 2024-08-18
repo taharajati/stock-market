@@ -471,13 +471,15 @@ import { IoMdCalculator } from "react-icons/io";
                     (column) => item[column] !== null && item[column] !== undefined && item[column] !== ''
                   );
 
-
+                   console.log("firstNonEmptyColumnIndex")
+                   console.log(firstNonEmptyColumnIndex)
                   return (
                     <tr
                       key={itemIndex}
                       className={itemIndex % 2 === 0 ? 'bg-gray-100 ' : 'bg-white'}
                       onMouseEnter={() => setHoveredRowIndex(itemIndex)}
                     >
+
                       {/* Render icons in a straight line when hovered */}
                       {hoveredRowIndex === itemIndex && firstNonEmptyColumnIndex !== -1 && (
                         <>

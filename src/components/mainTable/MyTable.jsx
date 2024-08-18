@@ -467,9 +467,9 @@ import { IoMdCalculator } from "react-icons/io";
             <tbody>
               {filteredData.length > 0 ? (
                 sortData(filteredData, sortCriteria, sortOrder).map((item, itemIndex) => {
-                  const firstNonEmptyColumnIndex = columns.findIndex(
-                    (column) => item[column] !== null && item[column] !== undefined && item[column] !== ''
-                  );
+                  //const firstNonEmptyColumnIndex = columns.findIndex(
+                  //  (column) => item[column] !== null && item[column] !== undefined && item[column] !== ''
+                  //);
                   const firstNonEmptyColumnIndex =1;
                    console.log("firstNonEmptyColumnIndex")
                    console.log(firstNonEmptyColumnIndex)

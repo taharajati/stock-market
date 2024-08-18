@@ -284,6 +284,10 @@ import { IoMdCalculator } from "react-icons/io";
             return { ...baseStyle, color: 'rgb(102,43,50)' ,backgroundColor:'rgb(196,132,146)'};
         } else if (columnName === 'bs_price_to_sell_price' && value < 0) {
             return { ...baseStyle, color: 'rgb(40,102,50)' ,backgroundColor:'rgb(163,240,173)' };
+          else if (columnName === 'today_return' && value >=0 0) {
+            return { ...baseStyle, color: 'rgb(40,102,50)' ,backgroundColor:'rgb(163,240,173)' };
+        }  else if (columnName === 'today_return' && value < 0) {
+            return { ...baseStyle, color: 'rgb(102,43,50)' ,backgroundColor:'rgb(196,132,146)'};
         }
 
 
@@ -479,9 +483,8 @@ import { IoMdCalculator } from "react-icons/io";
                         <>
                           {/* Render other columns up to the first non-empty column */}
                           {columns.slice(0, firstNonEmptyColumnIndex).map((column, columnIndex) => (
-                                /*console.log("1111")
-                               console.log(column)*/
-                            <td key={columnIndex} className="py-2 px-4 border border-gray-800" style={getCellStyle(column, item[column])}>
+
+                            <td key={columnIndex} className="py-2 px-4 border items-center  border-gray-800" style={getCellStyle(column, item[column])}>
                               {item[column] instanceof Date
                                 ? item[column].toLocaleDateString()
                                 : typeof item[column] === 'number'
@@ -518,7 +521,7 @@ import { IoMdCalculator } from "react-icons/io";
                           {/* Render remaining columns after the first non-empty column */}
                           {columns.slice(firstNonEmptyColumnIndex + 1).map((column, columnIndex) => (
 
-                            <td key={columnIndex} className="py-2 px-4 border border-gray-800" style={{...getCellStyle(column, item[column]), backgroundColor: 'gray',fontWeight: 'bold'}}>
+                            <td key={columnIndex} className="py-2 px-4 border border-gray-800" style={{...getCellStyle(column, item[column]),fontWeight: 'bold'}}>
                               {item[column] instanceof Date
                                 ? item[column].toLocaleDateString()
                                 : typeof item[column] === 'number'
@@ -534,10 +537,13 @@ import { IoMdCalculator } from "react-icons/io";
                         columns.map((column, columnIndex) => (
                           <td key={columnIndex} className="py-2 px-4 border border-gray-800" style={getCellStyle(column, item[column])}>
                             {item[column] instanceof Date
-                              ? item[column].toLocaleDateString()
-                              : typeof item[column] === 'number'
-                              ? formatNumberWithSeparator(item[column])
-                              : item[column]}
+                                ? item[column].toLocaleDateString()
+                                : typeof item[column] === 'number'
+                                ? column === 'today_return' //|| column === 'another_percentage_column'
+                                  ? `${formatNumberWithSeparator(item[column])}%`  // Add "%" for specific columns
+                                  : formatNumberWithSeparator(item[column])
+                                : item[column]}
+
                           </td>
                         ))}
                     </tr>

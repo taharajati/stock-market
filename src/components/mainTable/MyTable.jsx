@@ -285,10 +285,20 @@ import { IoMdCalculator } from "react-icons/io";
         } else if (columnName === 'bs_price_to_sell_price' && value < 0) {
             return { ...baseStyle, color: 'rgb(40,102,50)' ,backgroundColor:'rgb(163,240,173)' };
         }  else if (columnName === 'today_return' && value >=0) {
-            return { ...baseStyle, color: 'rgb(20,255,20)',fontWeight:'bold' //,backgroundColor:'rgb(163,240,173)'
+            return { ...baseStyle, color: 'rgb(20,180,20)',fontWeight:'bold' //,backgroundColor:'rgb(163,240,173)'
              };
         }  else if (columnName === 'today_return' && value < 0) {
-            return { ...baseStyle, color: 'rgb(255,20,50)', fontWeight:'bold' //,backgroundColor:'rgb(196,132,146)'
+            return { ...baseStyle, color: 'rgb(180,20,50)', fontWeight:'bold' //,backgroundColor:'rgb(196,132,146)'
+            };
+        }else if (columnName === 'option_status' && value =='ITM') {
+            return { ...baseStyle, color: 'rgb(40,102,50)' ,backgroundColor:'rgb(163,240,173)'
+            };
+        }else if (columnName === 'option_status' && value =='OTM') {
+            return { ...baseStyle, color: 'rgb(102,43,50)' ,backgroundColor:'rgb(196,132,146)'
+            };
+        }
+        else if (columnName === 'option_status' && value =='ATM') {
+            return { ...baseStyle, color: 'rgb(150,150,150)' ,backgroundColor:'rgb(100,100,100)'
             };
         }
 

@@ -444,12 +444,12 @@ import { IoMdCalculator } from "react-icons/io";
 
       <div className="m-2 items-center ">
         <div
-          className="table-container overflow-x-auto overflow-y-auto"
-          //style={{ maxWidth: '3000px', maxHeight: '500px' }}
+          className="table-container overflow-x-auto"
+           //style={{ maxHeight: '500px' }}
           onMouseLeave={() => setHoveredRowIndex(null)}
 
         >
-          <table className="table-auto  border-collapse border border-gray-800 w-full">
+          <table className="table-auto  border-collapse border border-gray-800 w-full" style={{ tableLayout: 'auto' }}>
             <thead className="bg-[#2F657D] text-white sticky top-0 z-2">
               <tr>
                 {columns.map((column, index) => (

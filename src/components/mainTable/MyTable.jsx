@@ -523,7 +523,7 @@ import { IoMdCalculator } from "react-icons/io";
                           {/* Render remaining columns after the first non-empty column */}
                           {columns.slice(firstNonEmptyColumnIndex).map((column, columnIndex) => (
 
-                            <td key={columnIndex} className="py-2 px-4 border border-gray-800" style={{...getCellStyle(column, item[column]),fontWeight: 'bold'}}>
+                            <td key={columnIndex} className="py-2 px-4 border border-gray-800" style={{...getCellStyle(column, item[column]),fontWeight: 'bold',whiteSpace: 'nowrap'}}>
                               {item[column] instanceof Date
                                 ? item[column].toLocaleDateString()
                                 : typeof item[column] === 'number'
@@ -537,7 +537,7 @@ import { IoMdCalculator } from "react-icons/io";
                       {/* Render other columns if no icons are displayed */}
                       {hoveredRowIndex !== itemIndex &&
                         columns.map((column, columnIndex) => (
-                          <td key={columnIndex} className="py-2 px-4 border border-gray-800" style={getCellStyle(column, item[column])}>
+                          <td key={columnIndex} className="py-2 px-4 border border-gray-800" style={{...getCellStyle(column, item[column]),whiteSpace: 'nowrap'}}>
                             {item[column] instanceof Date
                                 ? item[column].toLocaleDateString()
                                 : typeof item[column] === 'number'

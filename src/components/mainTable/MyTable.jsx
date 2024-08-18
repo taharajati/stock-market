@@ -420,7 +420,7 @@ import { IoMdCalculator } from "react-icons/io";
   };
 
   return (
-    <div className="container mt-4 mx-auto p-4 sm:w-full " dir="rtl">
+    <div className="mt-4 mx-auto p-4 w-full" dir="rtl">
       <div className="flex items-center justify-between mb-3 ">
         <div className="space-x-1">
           {validGroups.map((groupKey) => (
@@ -439,10 +439,11 @@ import { IoMdCalculator } from "react-icons/io";
       <div className="m-2 items-center ">
         <div
           className="table-container overflow-x-auto overflow-y-auto"
-          style={{ maxWidth: '3000px', maxHeight: '500px' }}
-          //onMouseLeave={() => setHoveredRowIndex(null)}
+          //style={{ maxWidth: '3000px', maxHeight: '500px' }}
+          onMouseLeave={() => setHoveredRowIndex(null)}
+
         >
-          <table className="table-auto  border-collapse border border-gray-800" style={{ width: '150%' }}>
+          <table className="table-auto  border-collapse border border-gray-800 w-full">
             <thead className="bg-[#2F657D] text-white sticky top-0 z-2">
               <tr>
                 {columns.map((column, index) => (

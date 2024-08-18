@@ -511,6 +511,8 @@ import { IoMdCalculator } from "react-icons/io";
                             {/* Add more icons if needed */}
                           </td>
 
+
+
                           {/* Render remaining columns after the first non-empty column */}
                           {columns.slice(firstNonEmptyColumnIndex + 1).map((column, columnIndex) => (
                             <td key={columnIndex} className="py-2 px-4 border border-gray-800" >

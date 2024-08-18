@@ -488,7 +488,7 @@ import { IoMdCalculator } from "react-icons/io";
                                 : item[column]}
                             </td>
                           ))}
-                            // backgroundColor: 'gray',fontWeight: 'bold'
+
                           {/* Render icons in a straight line */}
                           <td className="py-2 gap-4  px-4 flex space-x-2 mx-3" style={getCellStyle(column, item[column])}>
 

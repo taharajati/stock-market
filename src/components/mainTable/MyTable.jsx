@@ -484,7 +484,7 @@ import { IoMdCalculator } from "react-icons/io";
                       {hoveredRowIndex === itemIndex && firstNonEmptyColumnIndex !== -1 && (
                         <>
                           {/* Render other columns up to the first non-empty column */}
-                          {columns.slice(0, firstNonEmptyColumnIndex).map((column, columnIndex) => (
+                          {/*columns.slice(0, firstNonEmptyColumnIndex).map((column, columnIndex) => (
 
                             <td key={columnIndex} className="py-2 px-4 border items-center  border-gray-800" style={getCellStyle(column, item[column])}>
                               {item[column] instanceof Date
@@ -493,7 +493,7 @@ import { IoMdCalculator } from "react-icons/io";
                                 ? formatNumberWithSeparator(item[column])
                                 : item[column]}
                             </td>
-                          ))}
+                          ))*/}
 
                           {/* Render icons in a straight line */}
                           <td className="py-2 gap-4  px-4 flex items-center space-x-2 mx-3">

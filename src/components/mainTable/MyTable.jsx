@@ -491,7 +491,7 @@ import { IoMdCalculator } from "react-icons/io";
                           ))}
 
                           {/* Render icons in a straight line */}
-                          <td className="py-2 gap-4  px-4 flex space-x-2 mx-3">
+                          <td className="py-2 gap-4  px-4 flex items-center space-x-2 mx-3">
 
                             <span
                               className="cursor-pointer text-2xl"
@@ -517,7 +517,7 @@ import { IoMdCalculator } from "react-icons/io";
 
                           {/* Render remaining columns after the first non-empty column */}
                           {columns.slice(firstNonEmptyColumnIndex + 1).map((column, columnIndex) => (
-                            <td key={columnIndex} className="py-2 px-4 border border-gray-800" style={getCellStyle(column, item[column])}>
+                            <td key={columnIndex} className="py-2 px-4 border border-gray-800" style={getCellStyle(column, item[column]), backgroundColor: 'gray',fontWeight: 'bold'}>
                               {item[column] instanceof Date
                                 ? item[column].toLocaleDateString()
                                 : typeof item[column] === 'number'

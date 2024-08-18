@@ -490,7 +490,7 @@ import { IoMdCalculator } from "react-icons/io";
                           ))}
 
                           {/* Render icons in a straight line */}
-                          <td className="py-2 gap-4  px-4 flex space-x-2 mx-3" style={getCellStyle(column, item[column])}>
+                          <td className="py-2 gap-4  px-4 flex space-x-2 mx-3">
 
                             <span
                               className="cursor-pointer text-2xl"

@@ -449,7 +449,7 @@ import { IoMdCalculator } from "react-icons/io";
           onMouseLeave={() => setHoveredRowIndex(null)}
 
         >
-          <table className="table-auto  border-collapse border border-gray-800 w-full" style={{ tableLayout: 'auto' }}>
+          <table className="table-auto  border-collapse border border-gray-800 w-full">
             <thead className="bg-[#2F657D] text-white sticky top-0 z-2">
               <tr>
                 {columns.map((column, index) => (
@@ -461,7 +461,7 @@ import { IoMdCalculator } from "react-icons/io";
                     onSort={handleSort}
                   />
                 ))}
-
+                <th className="py-2 px-4 border border-[#343434] w-20"></th>
               </tr>
             </thead>
             <tbody>
@@ -494,7 +494,7 @@ import { IoMdCalculator } from "react-icons/io";
                           ))}
 
                           {/* Render icons in a straight line */}
-                           <td className="py-2 gap-4  px-4 flex items-center space-x-2 mx-3">
+                          <td className="py-2 gap-4  px-4 flex items-center space-x-2 mx-3">
 
                             <span
                               className="cursor-pointer text-2xl"

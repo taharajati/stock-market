@@ -461,7 +461,7 @@ import { IoMdCalculator } from "react-icons/io";
                     onSort={handleSort}
                   />
                 ))}
-                <th className="py-2 px-4 border border-[#343434] w-20"></th>
+
               </tr>
             </thead>
             <tbody>

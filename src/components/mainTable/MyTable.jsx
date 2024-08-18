@@ -284,7 +284,7 @@ import { IoMdCalculator } from "react-icons/io";
             return { ...baseStyle, color: 'rgb(102,43,50)' ,backgroundColor:'rgb(196,132,146)'};
         } else if (columnName === 'bs_price_to_sell_price' && value < 0) {
             return { ...baseStyle, color: 'rgb(40,102,50)' ,backgroundColor:'rgb(163,240,173)' };
-        }  else if (columnName === 'today_return' && value >=0 0) {
+        }  else if (columnName === 'today_return' && value >=0) {
             return { ...baseStyle, color: 'rgb(40,102,50)' ,backgroundColor:'rgb(163,240,173)' };
         }  else if (columnName === 'today_return' && value < 0) {
             return { ...baseStyle, color: 'rgb(102,43,50)' ,backgroundColor:'rgb(196,132,146)'};

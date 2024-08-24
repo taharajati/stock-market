@@ -22,7 +22,7 @@ function UserList() {
 
   const fetchUsers = async (token) => {
     try {
-      const response = await fetch('http://188.121.99.245/api/auth/get_user', {
+      const response = await fetch('http://api.optionscreener.ir/api/auth/get_user', {
         headers: {
           Authorization: `Bearer ${token}` // Send token in Authorization header
         }

@@ -481,8 +481,6 @@ import { IoMdCalculator } from "react-icons/io";
                   //  (column) => item[column] !== null && item[column] !== undefined && item[column] !== ''
                   //);
                   const firstNonEmptyColumnIndex =1;
-                   console.log("firstNonEmptyColumnIndex")
-                   console.log(firstNonEmptyColumnIndex)
                   return (
                     <tr
                       key={itemIndex}

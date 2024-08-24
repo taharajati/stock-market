@@ -30,13 +30,13 @@ const Nav = () => {
   //const { setIsAuthenticated, setPermissions } = useContext(LogoutContext); // Use the logout context
 
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
+  //const toggleDropdown = () => {
+  //  setIsDropdownOpen(!isDropdownOpen);
+  //};
 
-  const closeDropdown = () => {
-    setIsDropdownOpen(false);
-  };
+  //const closeDropdown = () => {
+  //  setIsDropdownOpen(false);
+  //};
 
   const logout = () => {
     setIsAuthenticated(false);

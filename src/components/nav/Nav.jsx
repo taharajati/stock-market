@@ -27,7 +27,7 @@ const Nav = () => {
   //const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const permissions = useContext(PermissionsContext); // Use the context
   const navigate = useNavigate();
-  //const { setIsAuthenticated, setPermissions } = useContext(LogoutContext); // Use the logout context
+  const { setIsAuthenticated, setPermissions } = useContext(LogoutContext); // Use the logout context
 
 
   //const toggleDropdown = () => {

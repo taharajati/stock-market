@@ -59,7 +59,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'r
 import './style.css';
 import Nav from './components/nav/Nav';
 import Login from './components/Login/Login';
-import Nav from './components/nav/Nav';
 import MyTable from './components/mainTable/MyTable';
 import Filter01 from './components/Filters/Filter01/Filter01';
 import Filter02 from './components/Filters/Filter02/Filter02';

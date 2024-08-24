@@ -23,7 +23,7 @@ const MyReChartLine = ({ chartData, width, height }) => {
   return (
     <div>
       <LineChart width={width} height={height} data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray="3 3" stroke="#ccc" />
         <XAxis dataKey="name" tickMargin={5} />
         <YAxis tickMargin={45} />
         <Tooltip />
@@ -81,7 +81,7 @@ const MyReChartLine = ({ chartData, width, height }) => {
             axisLine={{ stroke: '#888' }}
           />
           <YAxis
-            tickMargin={10}
+            tickMargin={45}
             tick={{ fontSize: 12, fontWeight: 500, fill: '#666' }}
             axisLine={{ stroke: '#888' }}
           />
@@ -96,8 +96,8 @@ const MyReChartLine = ({ chartData, width, height }) => {
             dataKey="value"
             stroke="#82ca9d"
             strokeWidth={3}
-            dot={{ stroke: '#82ca9d', strokeWidth: 2, fill: '#fff' }}
-            activeDot={{ r: 8 }}
+            //dot={{ stroke: '#82ca9d', strokeWidth: 2, fill: '#fff' }}
+            //activeDot={{ r: 8 }}
             animationDuration={500}
           />
 

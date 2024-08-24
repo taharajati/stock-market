@@ -68,7 +68,7 @@ import MyChart from './components/charts/MyChart';
 import OpStrategies from './components/operational_strategies/operational_strategies';
 import Home from './components/operational_strategies/operational_strategies';
 
-//import { ReportProvider } from './components/Files/OngoingFiles/filedetails/ReportContext';
+import { ReportProvider } from './components/context';
 
 export const PermissionsContext = createContext();
 export const LogoutContext = createContext();

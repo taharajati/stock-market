@@ -1,7 +1,4 @@
 import React from 'react';
-
-
-
 import MyTable from './mainTable/MyTable';
 import Filter01 from './Filters/Filter01/Filter01';
 import Filter02 from './Filters/Filter02/Filter02';
@@ -48,5 +45,6 @@ const Dashboard = () => {
       <MyTable filterValues={filterValues} />
     </>
   );
+  }
 
 export default Dashboard;

@@ -2,10 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 import DataFilter from './DataFilter';
-import MyChart from '../charts/MyChart';
+import MyChart from '../../charts/MyChart';
 import Modal from './Modal';
 import SortableTableHeader from './SortableTableHeader';
-import CalculatorPopup from '../Calculator/CalculatorPopup';
+import CalculatorPopup from '../../Calculator/CalculatorPopup';
 import { FaChartLine } from "react-icons/fa6";
 import { IoMdCalculator } from "react-icons/io";
 

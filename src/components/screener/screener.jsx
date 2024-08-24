@@ -33,8 +33,6 @@ const Dashboard = () => {
     return (
     <>
 
-      <Nav />
-
       <Filter01 setFilterValue={(value) => setFilterValues({ ...filterValues, filter01: value })} />
       <Filter02 onFilterChange={handleFilter02Change} />
       <Filter04 onFilterChange={handleFilter04Change} />

@@ -92,10 +92,11 @@ const MyReChartLine = ({ chartData, width, height }) => {
           />
           <Legend verticalAlign="top" align="right" iconType="circle" />
           <Line
-            type="monotone"
+            type="linear"
             dataKey="value"
             stroke="#82ca9d"
             strokeWidth={3}
+            dot={false}
             //dot={{ stroke: '#82ca9d', strokeWidth: 2, fill: '#fff' }}
             //activeDot={{ r: 8 }}
             animationDuration={500}

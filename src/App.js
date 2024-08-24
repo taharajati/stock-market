@@ -1,4 +1,4 @@
-import './style.css';
+/*import './style.css';
 import React, { useState } from 'react';
 import Nav from './components/nav/Nav';
 import MyTable from './components/mainTable/MyTable';
@@ -48,6 +48,99 @@ function App() {
   
       <MyTable filterValues={filterValues} />
     </>
+  );
+}
+
+export default App;
+*/
+
+import React, { useState, useEffect, createContext } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import './style.css';
+import Nav from './components/nav/Nav';
+import Login from './components/Login/Login';
+import Nav from './components/nav/Nav';
+import MyTable from './components/mainTable/MyTable';
+import Filter01 from './components/Filters/Filter01/Filter01';
+import Filter02 from './components/Filters/Filter02/Filter02';
+import Filter04 from './components/Filters/Filter04/Filter04';
+import DateFilter from './components/Filters/datefilter/DateFilter';
+import MyChart from './components/charts/MyChart';
+import OpStrategies from './components/operational_strategies/operational_strategies';
+import Home from './components/operational_strategies/operational_strategies';
+
+//import { ReportProvider } from './components/Files/OngoingFiles/filedetails/ReportContext';
+
+export const PermissionsContext = createContext();
+export const LogoutContext = createContext();
+
+
+function App() {
+  const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [permissions, setPermissions] = useState(null);
+
+
+  useEffect(() => {
+    const checkTokenValidity = async () => {
+      const storedToken = localStorage.getItem('accessToken');
+      if (storedToken) {
+        try {
+          const response = await fetch('http://5.34.198.87:8080/api/auth/get_user', {
+            headers: {
+              Authorization: `Bearer ${storedToken}`
+            }
+          });
+          if (response.ok) {
+            const data = await response.json();
+            setPermissions(data.data.permission); // Set permissions
+            setIsAuthenticated(true);
+          } else {
+            setIsAuthenticated(false);
+            localStorage.removeItem('accessToken');
+          }
+        } catch (error) {
+          console.error('Error checking token validity:', error);
+          setIsAuthenticated(false);
+          localStorage.removeItem('accessToken');
+        }
+      } else {
+        setIsAuthenticated(false);
+      }
+      setLoading(false);
+    };
+
+    checkTokenValidity();
+  }, []);
+
+
+
+  if (loading) {
+    return null; // Render nothing until token validation is complete
+  }
+
+  return (
+    <ReportProvider>
+      <PermissionsContext.Provider value={permissions}>
+      <LogoutContext.Provider value={{ setIsAuthenticated, setPermissions }}>
+
+        <Router>
+          <div>
+          {isAuthenticated && window.location.pathname !== '/login' && <Nav />}
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/screener" element={isAuthenticated ? <MyTable /> : <Navigate to="/login" />} />
+              <Route path="/home" element={isAuthenticated ? <Home /> : <Navigate to="/login" />} />
+              <Route path="/operational_strategies" element={isAuthenticated ? <OpStrategies /> : <Navigate to="/login" />} />
+              <Route path="/" element={<Navigate to="/login" />} />
+
+            </Routes>
+          </div>
+        </Router>
+        </LogoutContext.Provider>
+
+      </PermissionsContext.Provider>
+    </ReportProvider>
   );
 }
 

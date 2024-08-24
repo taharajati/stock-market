@@ -5,7 +5,7 @@ import Filter02 from './Filters/Filter02/Filter02';
 import Filter04 from './Filters/Filter04/Filter04';
 import DateFilter from './Filters/datefilter/DateFilter';
 import MyChart from '../charts/MyChart';
-import Nav from '../components/nav/Nav';
+import Nav from '../nav/Nav';
 
 const Dashboard = () => {
     const [filterValues, setFilterValues] = useState({

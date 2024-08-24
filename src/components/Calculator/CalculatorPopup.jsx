@@ -1,6 +1,6 @@
 // CalculatorPopup.js
 import React, { useState } from 'react';
-import Modal from '../mainTable/Modal';
+import Modal from '../screener/mainTable/Modal';
 
 const CalculatorPopup = ({ onClose }) => {
   const [riskFree, setRiskFree] = useState(20);

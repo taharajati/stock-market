@@ -53,10 +53,10 @@ const Nav = () => {
           <FaUserCircle className='mt-1' />
         </div>
         <div className="flex gap-5 justify-between">
-          {permissions?.users && <Link to="/operational_strategies">استراتژی های عملیاتی</Link>}
-          {permissions?.branch && <Link to="/calculator">ماشین حساب</Link>}
-          {permissions?.branch && <Link to="/screener">دیدبان</Link>}
-          {permissions?.branch && <Link to="/home">صفحه اصلی </Link>}
+          {permissions?.operational_strategies && <Link to="/operational_strategies">استراتژی های عملیاتی</Link>}
+          {permissions?.calculator && <Link to="/calculator">ماشین حساب</Link>}
+          {permissions?.screener && <Link to="/screener">دیدبان</Link>}
+          {permissions?.home && <Link to="/home">صفحه اصلی </Link>}
 
         </div>
       </div>

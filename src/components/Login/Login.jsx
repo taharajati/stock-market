@@ -16,7 +16,7 @@ function Login() {
     e.preventDefault();
     try {
 
-      const response = await fetch("http://5.34.198.87:8080/api/auth/login", {
+      const response = await fetch("https://api.optionscreener.ir//api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

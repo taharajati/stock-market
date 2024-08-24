@@ -518,7 +518,7 @@ import { IoMdCalculator } from "react-icons/io";
                             </span>
                             <span
                               className="cursor-pointer text-2xl"
-                              //onClick={() => setCalculatorVisible(true)}
+                              onClick={() => setCalculatorVisible(true)}
                             >
                               <IoMdCalculator />
 

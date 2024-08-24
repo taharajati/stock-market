@@ -85,7 +85,7 @@ function App() {
       const storedToken = localStorage.getItem('accessToken');
       if (storedToken) {
         try {
-          const response = await fetch('http://api.optionscreener.ir/api/auth/get_user', {
+          const response = await fetch('https://api.optionscreener.ir/api/auth/get_user', {
             headers: {
               Authorization: `Bearer ${storedToken}`
             }

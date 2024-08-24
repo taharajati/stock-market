@@ -59,12 +59,9 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'r
 import './style.css';
 import Nav from './components/nav/Nav';
 import Login from './components/Login/Login';
-import MyTable from './components/mainTable/MyTable';
-import Filter01 from './components/Filters/Filter01/Filter01';
-import Filter02 from './components/Filters/Filter02/Filter02';
-import Filter04 from './components/Filters/Filter04/Filter04';
-import DateFilter from './components/Filters/datefilter/DateFilter';
-import MyChart from './components/charts/MyChart';
+import Screener from './components/screener/screener';
+
+
 import OpStrategies from './components/operational_strategies/operational_strategies';
 import Home from './components/operational_strategies/operational_strategies';
 
@@ -128,7 +125,7 @@ function App() {
           {isAuthenticated && window.location.pathname !== '/login' && <Nav />}
             <Routes>
               <Route path="/login" element={<Login />} />
-              <Route path="/screener" element={isAuthenticated ? <MyTable /> : <Navigate to="/login" />} />
+              <Route path="/screener" element={isAuthenticated ? <Screener /> : <Navigate to="/login" />} />
               <Route path="/home" element={isAuthenticated ? <Home /> : <Navigate to="/login" />} />
               <Route path="/operational_strategies" element={isAuthenticated ? <OpStrategies /> : <Navigate to="/login" />} />
               <Route path="/" element={<Navigate to="/login" />} />

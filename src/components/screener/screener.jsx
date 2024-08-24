@@ -1,7 +1,5 @@
 import React from 'react';
-import Filter from './Filter';
-import DateFilter from './DateFilter';
-import Table from './Table';
+
 
 
 import MyTable from './mainTable/MyTable';

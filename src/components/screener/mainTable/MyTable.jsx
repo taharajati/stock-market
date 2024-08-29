@@ -564,7 +564,7 @@ import { IoMdCalculator } from "react-icons/io";
                       {/* Render other columns if no icons are displayed */}
                       {hoveredRowIndex !== itemIndex &&
                         columns.map((column, columnIndex) => (
-                          <td key={columnIndex} className="py-2 px-4 border border-gray-800" style={{...getCellStyle(column, item[column]),whiteSpace: 'nowrap'}}>
+                          <td key={columnIndex} className="py-2 px-4 border border-gray-800" style={{...getCellStyle(column, item[column]),whiteSpace: 'nowrap'}} dir="ltr">
                             {item[column] instanceof Date
                                 ? item[column].toLocaleDateString()
                                 : typeof item[column] === 'number'

@@ -15,8 +15,8 @@ const SortableTableHeader = ({ column, criteria, order, onSort }) => {
 
       {column.farsiName || column.fieldName}
       {criteria === column.fieldName && (
-        <span className="ml-1">{order === 'asc' ? '🔽' : '🔼'}</span>
-        //<div><InfoIcon text='my re' /></div>
+        <span className="ml-1">{order === 'asc' ? ' 🔽 ' : ' 🔼 '}</span>
+        //<div><InfoIcon text='my re'></InfoIcon></div>
       )}
     </th>
   );

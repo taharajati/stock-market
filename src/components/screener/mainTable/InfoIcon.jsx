@@ -192,7 +192,8 @@ const InfoIcon = ({ text }) => {
       text:"این اطلاعات است",
     },
     option_type_fa: {
-      style: { textAlign: 'center', text:"این اطلاعات است",
+      style: { textAlign: 'center', color: 'black' },
+      text:"این اطلاعات است",
     },
     probability_of_profit: {
       style: { textAlign: 'center', color: 'black' },
@@ -307,18 +308,16 @@ text:"این اطلاعات است",
     },
     volume_count: {
       style: { textAlign: 'center', color: 'black' },
-text:"این اطلاعات است",
+      text:"این اطلاعات است",
     },
     volume_score: {
       style: { textAlign: 'center', color: 'black' },
-text:"این اطلاعات است",
+      text:"این اطلاعات است",
     },
     yesterday_positions: {
       style: { textAlign: 'center', color: 'black' },
-text:"این اطلاعات است",
-    },
-
-    // Add more columns as needed
+      text:"این اطلاعات است",
+    }
   };
 
   const [showPopup, setShowPopup] = useState(false);

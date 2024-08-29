@@ -10,6 +10,11 @@ import { FaChartLine } from "react-icons/fa6";
 import { IoMdCalculator } from "react-icons/io";
 
   const MyTable = ({ filterValues }) => {
+    const [showPopup, setShowPopup] = useState(false);
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
     const [intradata, setIntradata] = useState();
     const [data, setData] = useState();
     const [selectedGroup, setSelectedGroup] = useState('summary');
@@ -474,6 +479,8 @@ import { IoMdCalculator } from "react-icons/io";
             <thead className="bg-[#2F657D] text-white sticky top-0 z-2">
               <tr>
                 {columns.map((column, index) => (
+
+
                   <SortableTableHeader
                     key={index}
                     column={{ fieldName: column, farsiName: data.fields[column] }}
@@ -481,6 +488,53 @@ import { IoMdCalculator } from "react-icons/io";
                     order={sortOrder}
                     onSort={handleSort}
                   />
+
+
+                    <div style={{ position: 'relative', display: 'inline-block' }}>
+                      {/* Circle with "?" Icon */}
+                      <div
+                        onClick={togglePopup}
+                        style={{
+                          width: '24px',
+                          height: '24px',
+                          borderRadius: '50%',
+                          backgroundColor: '#2F657D',
+                          color: 'white',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          fontSize: '16px',
+                        }}
+                      >
+                        ?
+                      </div>
+
+                      {/* Popup Box */}
+                      {showPopup && (
+                        <div
+                          style={{
+                            position: 'absolute',
+                            top: '30px',
+                            left: '50%',
+                            transform: 'translateX(-50%)',
+                            backgroundColor: 'white',
+                            border: '1px solid #ddd',
+                            borderRadius: '4px',
+                            padding: '10px',
+                            boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',
+                            zIndex: 1000,
+                            width: '200px',
+                          }}
+                        >
+                          <p>This is the popup text with some information.</p>
+                          <button onClick={togglePopup} style={{ cursor: 'pointer', backgroundColor: '#2F657D', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px' }}>
+                            Close
+                          </button>
+                        </div>
+                      )}
+                    </div>
+
                 ))}
 
               </tr>

@@ -21,7 +21,7 @@ const SortableTableHeader = ({ column, criteria, order, onSort }) => {
 
       )}
       <InfoIcon
-           text={'my re'}
+           text={'این یک است است'}
          />
 
 

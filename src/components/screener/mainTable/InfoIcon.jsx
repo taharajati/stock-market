@@ -332,8 +332,8 @@ text:"این اطلاعات است",
       <div
         onClick={togglePopup}
         style={{
-          width: '24px',
-          height: '24px',
+          width: '30px',
+          height: '30px',
           borderRadius: '50%',
           backgroundColor: '#2F657D',
           color: 'white',
@@ -341,7 +341,7 @@ text:"این اطلاعات است",
           alignItems: 'center',
           justifyContent: 'center',
           cursor: 'pointer',
-          fontSize: '16px',
+          fontSize: '10px',
         }}
       >
         ?
@@ -361,7 +361,7 @@ text:"این اطلاعات است",
             padding: '10px',
             boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',
             zIndex: 1000,
-            width: '200px',
+            width: '400px',
           }}
         >
           <p>{text}</p>

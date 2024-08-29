@@ -403,9 +403,20 @@ import { IoMdCalculator } from "react-icons/io";
     return <div>No data available</div>;
   }
 
-  const formatNumberWithSeparator = (number) => {
+  /*const formatNumberWithSeparator = (number) => {
     return number.toLocaleString();
-  };
+  };*/
+  const formatNumberWithSeparator = (number) => {
+  // Convert the number to a string with separators based on the locale
+  const formattedNumber = number.toLocaleString();
+
+  // If the number is negative, ensure the minus sign is at the front
+  if (number < 0) {
+    return `-${formattedNumber.replace('-', '')}`;
+  }
+
+  return formattedNumber;
+};
 
   const filteredData = DataFilter({
     intradata,

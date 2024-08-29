@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // InfoIcon Component
-const InfoIcon = ({ columnName }) => {
+const InfoIcon = ({ text }) => {
 
    const columnInfo = {
     symbol_fa: {
@@ -365,7 +365,7 @@ text:"این اطلاعات است",
             width: '200px',
           }}
         >
-          <p>{columnInfo[columnName]?.text}</p>
+          <p>{text}</p>
           <button
             onClick={togglePopup}
             style={{

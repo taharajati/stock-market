@@ -1,5 +1,6 @@
 import React from 'react';
 import InfoIcon from './InfoIcon'; // Import the InfoIcon component
+import '../../../output.css'; // Import your CSS file
 
 
 const SortableTableHeader = ({ column, criteria, order, onSort }) => {
@@ -9,7 +10,7 @@ const SortableTableHeader = ({ column, criteria, order, onSort }) => {
 
   return (
     <th
-      className="py-2 px-4 border border-[#343434] cursor-pointer"
+      className="table-header py-2 px-4  cursor-pointer"
       onClick={handleClick}
     >
 
@@ -20,9 +21,11 @@ const SortableTableHeader = ({ column, criteria, order, onSort }) => {
 
 
       )}
+      <div className="info-icon-container">
       <InfoIcon
            text={'این یک است است'}
          />
+         </div>
 
 
     </th>

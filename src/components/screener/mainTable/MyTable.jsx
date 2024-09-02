@@ -6,10 +6,19 @@ import MyChart from '../../charts/MyChart';
 import Modal from './Modal';
 import SortableTableHeader from './SortableTableHeader';
 import CalculatorPopup from '../../Calculator/CalculatorPopup';
+import DetailPopup from '../../option_detail/option_detail';
 import { FaChartLine } from "react-icons/fa6";
 import { IoMdCalculator } from "react-icons/io";
+import { CgDetailsMore} from "react-icons/cg";
 
   const MyTable = ({ filterValues }) => {
+
+  const OpenTSE = (instrumentCode) => {
+      const url = `https://tsetmc.ir/instInfo/${instrumentCode}`; // Replace with your specific URL pattern
+      window.open(url, '_blank'); // Opens the URL in a new tab
+    };
+
+
     const [showPopup, setShowPopup] = useState(false);
 
   const togglePopup = () => {
@@ -29,6 +38,7 @@ import { IoMdCalculator } from "react-icons/io";
     const [sortCriteria, setSortCriteria] = useState('');
     const [sortOrder, setSortOrder] = useState('asc');
     const [calculatorVisible, setCalculatorVisible] = useState(false);
+    const [detailVisible, setDetailVisible] = useState(false);
     const columnStyles = {
     symbol_fa: {
       style: { width: '150px', textAlign: 'right', color: 'black',fontWeight:"bold" },
@@ -286,13 +296,19 @@ import { IoMdCalculator } from "react-icons/io";
         } else if (columnName === 'bs_price_to_buy_price' && value < 0) {
             return { ...baseStyle, color: 'rgb(40,102,50)' ,backgroundColor:'rgb(163,240,173)' };
         } else if (columnName === 'bs_price_to_sell_price' && value >= 0) {
-            return { ...baseStyle, color: 'rgb(102,43,50)' ,backgroundColor:'rgb(196,132,146)'};
+            return { ...baseStyle, color: 'rgb(34, 139, 34)' ,backgroundColor:'rgb(144, 238, 144)'};
         } else if (columnName === 'bs_price_to_sell_price' && value < 0) {
-            return { ...baseStyle, color: 'rgb(40,102,50)' ,backgroundColor:'rgb(163,240,173)' };
+            return { ...baseStyle, color: 'rgb(139, 0, 0)' ,backgroundColor:'rgb(255, 99, 71)' };
         }  else if (columnName === 'today_return' && value >=0) {
-            return { ...baseStyle, color: 'rgb(20,180,20)',fontWeight:'bold' //,backgroundColor:'rgb(163,240,173)'
-             };
+            return { ...baseStyle, color: 'rgb(20,180,20)',fontWeight:'bold'}; //,backgroundColor:'rgb(163,240,173)'
+
         }  else if (columnName === 'today_return' && value < 0) {
+            return { ...baseStyle, color: 'rgb(180,20,50)', fontWeight:'bold'}; //,backgroundColor:'rgb(196,132,146)'
+            }
+         else if (columnName === 'bid_ask_spread_percent' && value >=0) {
+            return { ...baseStyle, color: 'rgb(20,180,20)',fontWeight:'bold' //,backgroundColor:'rgb(163,240,173)'
+             }
+        }  else if (columnName === 'bid_ask_spread_percent' && value < 0) {
             return { ...baseStyle, color: 'rgb(180,20,50)', fontWeight:'bold' //,backgroundColor:'rgb(196,132,146)'
             };
         }else if (columnName === 'option_status' && value ==='ITM') {
@@ -475,9 +491,10 @@ import { IoMdCalculator } from "react-icons/io";
           onMouseLeave={() => setHoveredRowIndex(null)}
 
         >
-          <table className="table-auto  border-collapse border border-gray-800 w-full">
+          <table className="table-auto  border-collapse  w-full" >
             <thead className="bg-[#2F657D] text-white sticky top-0 z-2">
               <tr>
+                <th ></th>
                 {columns.map((column, index) => (
 
 
@@ -499,7 +516,7 @@ import { IoMdCalculator } from "react-icons/io";
                   //const firstNonEmptyColumnIndex = columns.findIndex(
                   //  (column) => item[column] !== null && item[column] !== undefined && item[column] !== ''
                   //);
-                  const firstNonEmptyColumnIndex =1;
+                  const firstNonEmptyColumnIndex =0;
                   return (
                     <tr
                       key={itemIndex}
@@ -507,25 +524,11 @@ import { IoMdCalculator } from "react-icons/io";
                       onMouseEnter={() => setHoveredRowIndex(itemIndex)}
                     >
 
-                      {/* Render icons in a straight line when hovered */}
-                      {hoveredRowIndex === itemIndex && firstNonEmptyColumnIndex !== -1 && (
-                        <>
-                          {/* Render other columns up to the first non-empty column */}
-                          {/*columns.slice(0, firstNonEmptyColumnIndex).map((column, columnIndex) => (
 
-                            <td key={columnIndex} className="py-2 px-4 border items-center  border-gray-800" style={getCellStyle(column, item[column])}>
-                              {item[column] instanceof Date
-                                ? item[column].toLocaleDateString()
-                                : typeof item[column] === 'number'
-                                ? formatNumberWithSeparator(item[column])
-                                : item[column]}
-                            </td>
-                          ))*/}
+                      {/* Render other columns if no icons are displayed */}
+                      <td className="py-2 gap-4  px-4 flex items-center space-x-2 mx-3" colSpan="4">
 
-                          {/* Render icons in a straight line */}
-                          <td className="py-2 gap-4  px-4 flex items-center space-x-2 mx-3">
-
-                            <span
+                            {/* <span
                               className="cursor-pointer text-2xl"
                               onClick={() => {
                                 handlePostRequest(item);
@@ -534,42 +537,37 @@ import { IoMdCalculator } from "react-icons/io";
                               }}
                             >
                               <FaChartLine />
-                            </span>
+                            </span> */}
                             <span
-                              className="cursor-pointer text-2xl"
-                              onClick={() => setCalculatorVisible(true)}
+                              className="cursor-pointer text-4xl"
+                              onClick={() => setDetailVisible(true)}
                             >
-                              <IoMdCalculator />
+                              <CgDetailsMore/>
 
                             </span>
-                            {/* Add more icons if needed */}
-                          </td>
 
+                            {/* <span
+                              className="cursor-pointer  rounded-md py-1 text-[color:var(--color-light)]   px-1 bg-[color:var(--color-primary)]"
+                              onClick={() => OpenTSE(item['instrument_code'])}
+                            >
+                              TSE
 
+                            </span> */}
 
-                          {/* Render remaining columns after the first non-empty column */}
-                          {columns.slice(firstNonEmptyColumnIndex).map((column, columnIndex) => (
-
-                            <td key={columnIndex} className="py-2 px-4 border border-gray-800" style={{...getCellStyle(column, item[column]),fontWeight: 'bold',whiteSpace: 'nowrap'}} dir="ltr">
-                              {item[column] instanceof Date
-                                ? item[column].toLocaleDateString()
-                                : typeof item[column] === 'number'
-                                ? formatNumberWithSeparator(item[column])
-                                : item[column]}
                             </td>
-                          ))}
-                        </>
-                      )}
-
-                      {/* Render other columns if no icons are displayed */}
-                      {hoveredRowIndex !== itemIndex &&
+                      {//hoveredRowIndex !== itemIndex &&
                         columns.map((column, columnIndex) => (
-                          <td key={columnIndex} className="py-2 px-4 border border-gray-800" style={{...getCellStyle(column, item[column]),whiteSpace: 'nowrap'}} dir="ltr">
+
+                          <td key={columnIndex}
+                          className={`py-2 px-4 ${
+                            hoveredRowIndex === itemIndex ? 'font-bold' : ''
+                          }`}
+                          style={{...getCellStyle(column, item[column]),whiteSpace: 'nowrap' }} dir="ltr">
                             {item[column] instanceof Date
                                 ? item[column].toLocaleDateString()
                                 : typeof item[column] === 'number'
-                                ? column === 'today_return' //|| column === 'another_percentage_column'
-                                  ? `${formatNumberWithSeparator(item[column])}%`  // Add "%" for specific columns
+                                ? column === 'today_return' || column === 'bid_ask_spread_percent'
+                                  ? `${formatNumberWithSeparator(item[column])} %`  // Add "%" for specific columns
                                   : formatNumberWithSeparator(item[column])
                                 : item[column]}
 
@@ -580,7 +578,7 @@ import { IoMdCalculator } from "react-icons/io";
                 })
               ) : (
                 <tr>
-                  <td colSpan={columns.length} className="py-2 px-4 border border-gray-800">
+                  <td colSpan={columns.length} className="py-2 px-4 ">
                     No matching data
                   </td>
                 </tr>
@@ -593,6 +591,7 @@ import { IoMdCalculator } from "react-icons/io";
       {/* Calculator Popup */}
       {calculatorVisible && <CalculatorPopup onClose={() => setCalculatorVisible(false)} />}
 
+        {detailVisible && <DetailPopup onClose={() => setDetailVisible(false)} />}
       {/* Chart Modal */}
       {showChart && (
         <Modal onClose={() => setShowChart(false)}>

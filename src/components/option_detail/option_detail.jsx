@@ -1,135 +1,125 @@
-// CalculatorPopup.js
-import React, { useState } from 'react';
-import Modal from '../screener/mainTable/Modal';
+import React, { useState, useEffect } from 'react';
+import Modal from '../screener/mainTable/Modal'; // Ensure the correct path
+import PriceChart from './PriceChart'; // Adjust path as necessary
+import SpecificationsTab from './SpecificationsTab'; // Adjust path as necessary
 
+const fetchData = async (instrumentId, adjusted) => {
+  if (!instrumentId) {
+    console.error('Instrument ID is required');
+    return { historicalPriceData: null, specificationsData: null };
+  }
 
+  try {
+    const historicalPriceResponse = await fetch(`https://api.optionscreener.ir/api/prices/historicalprice?instrument_id=${instrumentId}&adjusted=${adjusted}`);
+    if (!historicalPriceResponse.ok) {
+      throw new Error(`Error fetching historical prices: ${historicalPriceResponse.statusText}`);
+    }
+    const historicalPriceData = await historicalPriceResponse.json();
 
+    const specificationsResponse = await fetch(`https://api.optionscreener.ir/api/options/detail?instrument_id=${instrumentId}`);
+    if (!specificationsResponse.ok) {
+      throw new Error(`Error fetching specifications: ${specificationsResponse.statusText}`);
+    }
+    const specificationsData = await specificationsResponse.json();
 
-// Dummy components for different tabs
-const TabContent1 = ({ data }) => (
-  <div>
-    <h2>Tab 1 Content</h2>
-    <p>Data for Tab 1: {data}</p>
-  </div>
-);
+    return { historicalPriceData, specificationsData };
+  } catch (error) {
+    console.error(error.message);
+    return { historicalPriceData: null, specificationsData: null };
+  }
+};
 
-const TabContent2 = ({ data }) => (
-  <div>
-    <h2>Tab 2 Content</h2>
-    <p>Data for Tab 2: {data}</p>
-  </div>
-);
+const DetailPopup = ({ instrumentId, instrumentCode, onClose }) => {
+  const [activeTab, setActiveTab] = useState('tab1');
+  const [data, setData] = useState({
+    historicalPriceData: null,
+    specificationsData: null
+  });
 
-const TabContent3 = ({ data }) => (
-  <div>
-    <h2>Tab 3 Content</h2>
-    <p>Data for Tab 3: {data}</p>
-  </div>
-);
+  useEffect(() => {
+    const loadData = async () => {
+      const fetchedData = await fetchData(instrumentId, 'False'); // Adjusted value is 'False'
+      setData({
+        historicalPriceData: fetchedData.historicalPriceData,
+        specificationsData: fetchedData.specificationsData
+      });
+    };
 
+    if (instrumentId) {
+      loadData();
+    }
+  }, [instrumentId]);
 
-const DetailPopup = ({ onClose }) => {
-    const [activeTab, setActiveTab] = useState('tab1');
-  const [data, setData] = useState('Sample Data');
-
-  // Function to handle tab change
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
+  const handleTabChange = (tabId) => {
+    setActiveTab(tabId);
   };
 
-  const modalStyles = {
-  overlay: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    background: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
-    backdropFilter: 'blur(8px)', // Blur effect
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 1000,
-  },
-  content: {
-    background: 'white',
-    padding: '10px',
-    margin:'10px',
-    borderRadius: '8px',
-    maxWidth: '95%',
-    maxHeight: '95%',
-    overflowY: 'auto',
-    position: 'relative',
-    zIndex: 1001,
-  },
-};
+  const handleArrowClick = (direction) => {
+    const tabs = ['tab1', 'tab2', 'tab3', 'tab4'];
+    const currentIndex = tabs.findIndex((tab) => tab === activeTab);
+    const newIndex = (currentIndex + direction + tabs.length) % tabs.length;
+    setActiveTab(tabs[newIndex]);
+  };
 
-const tabStyles = {
-  tabs: {
-    display: 'flex',
-    marginBottom: '16px',
-  },
-  tab: {
-    background: '#e0e0e0',
-    border: 'none',
-    padding: '10px 20px',
-    cursor: 'pointer',
-    borderRadius: '4px',
-    marginRight: '4px',
-  },
-  activeTab: {
-    background: '#2F657D',
-    color: 'white',
-    border: 'none',
-    padding: '10px 20px',
-    cursor: 'pointer',
-    borderRadius: '4px',
-    marginRight: '4px',
-  },
-  content: {
-    padding: '16px',
-  },
-};
+  const tabs = [
+    { id: 'tab1', label: 'Diagram', content: <PriceChart data={data.historicalPriceData} /> },
+    { id: 'tab2', label: 'Specifications', content: <SpecificationsTab data={data.specificationsData} /> },
+    { id: 'tab3', label: 'Trading Board', content: <div>Trading Board Content</div> },
+    { id: 'tab4', label: 'Valuation', content: <div>Valuation Content</div> }
+  ];
+
+  const activeIndex = tabs.findIndex((tab) => tab.id === activeTab);
+  const underlineWidth = 100 / tabs.length;
+  const underlineTransform = `translateX(${100 * (tabs.length - 1 - activeIndex)}%)`;
 
   return (
     <Modal onClose={onClose}>
-       <div >
-
-        <button onClick={onClose} style={{ position: 'absolute', top: 18, right: 35 }}>بستن</button>
-        <div style={modalStyles.content}>
-        <div style={tabStyles.tabs}>
-          <button
-            style={activeTab === 'tab1' ? tabStyles.activeTab : tabStyles.tab}
-            onClick={() => handleTabChange('tab1')}
-          >
-            Tab 1
-          </button>
-          <button
-            style={activeTab === 'tab2' ? tabStyles.activeTab : tabStyles.tab}
-            onClick={() => handleTabChange('tab2')}
-          >
-            Tab 2
-          </button>
-          <button
-            style={activeTab === 'tab3' ? tabStyles.activeTab : tabStyles.tab}
-            onClick={() => handleTabChange('tab3')}
-          >
-            Tab 3
-          </button>
+      <div className="flex flex-col h-full bg-white p-4 m-2 rounded-lg max-w-full max-h-[95%] overflow-hidden relative">
+        <div className="flex-1 overflow-y-auto p-4">
+          {tabs.find((tab) => tab.id === activeTab).content}
         </div>
 
-        <div style={tabStyles.content}>
-          {activeTab === 'tab1' && <TabContent1 data={data} />}
-          {activeTab === 'tab2' && <TabContent2 data={data} />}
-          {activeTab === 'tab3' && <TabContent3 data={data} />}
+        <div className="flex items-center justify-center mt-auto">
+          <button
+            className="text-gray-500 p-4 text-2xl hover:text-[#2F657D] transition-colors duration-300"
+            onClick={() => handleArrowClick(-1)}
+            disabled={tabs.findIndex((tab) => tab.id === activeTab) === 0}
+          >
+            &lt;
+          </button>
+
+          <div className="flex-1 flex justify-between relative mx-4">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                className={`flex-1 text-center py-2 transition-colors duration-300 ${
+                  activeTab === tab.id ? 'text-[#2F657D]' : 'text-gray-500'
+                }`}
+                onClick={() => handleTabChange(tab.id)}
+              >
+                {tab.label}
+              </button>
+            ))}
+            <span
+              className="absolute bottom-[-2px] left-0 h-0.5 bg-[#2F657D] transition-transform duration-300"
+              style={{
+                width: `${underlineWidth}%`,
+                transform: underlineTransform,
+              }}
+            ></span>
+          </div>
+
+          <button
+            className="text-gray-500 p-4 text-2xl hover:text-[#2F657D] transition-colors duration-300"
+            onClick={() => handleArrowClick(1)}
+            disabled={tabs.findIndex((tab) => tab.id === activeTab) === tabs.length - 1}
+          >
+            &gt;
+          </button>
         </div>
       </div>
-    </div>
     </Modal>
   );
 };
 
 export default DetailPopup;
-
-
-

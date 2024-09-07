@@ -91,7 +91,7 @@ function Login() {
             </div>
             <button
               type="submit"
-              className="bg-[color:var(--color-bg-variant)] text-white py-2 px-4 rounded-md hover:bg-[color:var(--color-primary)] transition-all w-full mt-4 shadow-lg"
+              className="bg-[color:var(--color-primary)] text-white py-2 px-4 rounded-md hover:bg-[color:var(--color-primary)] transition-all w-full mt-4 shadow-lg"
             >
               ورود
             </button>

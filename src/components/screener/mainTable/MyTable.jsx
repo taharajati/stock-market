@@ -421,9 +421,16 @@ import { CgDetailsMore} from "react-icons/cg";
   }, [selectedGroup, filterValues.filter04]);
 
   if (loading) {
-      return <div>در حال دریافت دیتا ...</div>;
-  }
-
+    return (
+        <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+        }}>
+            ...در حال دریافت دیتا 
+        </div>
+    );
+}
   if (error) {
       return <div>Error: {error}</div>;
   }
@@ -492,16 +499,16 @@ import { CgDetailsMore} from "react-icons/cg";
   return (
       <div className="mt-4 mx-auto p-4 w-full" dir="rtl">
           <div className="flex items-center justify-between mb-3 ">
-              <div className="space-x-1">
+              <div className="space-x-4">
                   {validGroups.map((groupKey) => (
-                      <button
-                          key={groupKey}
-                          type="button"
-                          className={`btn ${selectedGroup === groupKey ? 'px-4 py-2 bg-[#2F657D] text-white rounded-lg scale-105 transition duration-500' : 'px-3 py-1 bg-[#F4F2F2] rounded-md'}`}
-                          onClick={() => setSelectedGroup(groupKey)}
-                      >
-                          {data && data.groups && data.groups[groupKey] ? data.groups[groupKey] : 'Unknown Group'}
-                      </button>
+                    <button
+                    key={groupKey}
+                    type="button"
+                    className={`px-3 py-1  ${selectedGroup === groupKey ? 'bg-[#2F657D] text-white px-4 py-2 rounded-lg scale-105 transition duration-500' : 'bg-[#F4F2F2] rounded-md'}`}
+                    onClick={() => setSelectedGroup(groupKey)}
+                  >
+                    {data && data.groups && data.groups[groupKey] ? data.groups[groupKey] : 'Unknown Group'}
+                  </button>
                   ))}
               </div>
           </div>

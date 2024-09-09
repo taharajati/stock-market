@@ -51,20 +51,17 @@ const DateFilter = ({ onFilterChange }) => {
   };
 
   return (
-    <div className='flex float-right'>
-      <div className='float-left'>
-        <button className='mx-2' onClick={handleFilterClick}>
-          اعمال
-        </button>
-      </div>
+    <div className='flex float-right mr-6'>
+
 
       <div className='flex items-center mb-4'>
         <select
-          className='form-select border w-48' dir='rtl'
+          className='form-select border w-48'
           value={selectedDueDate}
+          onClick={handleFilterClick}
           onChange={(e) => setSelectedDueDate(e.target.value)}
         >
-          <option value=''>انتخاب تاریخ سررسید</option>
+          <option value=''>  </option>
           {dueDateOptions.map((date, index) => (
             <option key={index} value={date}>
               {date}

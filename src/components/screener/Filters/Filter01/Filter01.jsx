@@ -45,8 +45,8 @@ const Filter01 = ({ setFilterValue }) => {
   }
 
   return (
-    <div className="text-right my-3">
-      <span className="mr-6 my-1 text-right  float-right ms-3">نماد سهم پایه</span>
+    <div className="text-right my-3 mr-6">
+      <span className=" my-1 text-right  float-right ms-3">نماد سهم پایه</span>
       <div className="flex items-center justify-end mb-3 w-[15%] ml-auto m-1">
         <Select
           className="w-48"

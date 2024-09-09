@@ -1,10 +1,10 @@
 // DiagramTab.js
 import React from 'react';
-import PriceChart from './PriceChart'; // Adjust the path as needed
+import PriceChart from './CandlestickChart'; // Adjust the path as needed
 
 const DiagramTab = ({ data }) => (
   <div>
-    <h2 className="text-lg font-semibold">Diagram</h2>
+    <h2 className="text-lg font-semibold">نمودار</h2>
     <PriceChart data={data} />
   </div>
 );

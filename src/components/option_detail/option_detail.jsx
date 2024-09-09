@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Modal from '../screener/mainTable/Modal'; // Ensure the correct path
-import PriceChart from './PriceChart'; // Adjust path as necessary
+import CandlestickChart from './CandlestickChart'; // Adjust path as necessary
 import SpecificationsTab from './SpecificationsTab'; // Adjust path as necessary
 
 const fetchData = async (instrumentId, adjusted) => {
@@ -62,7 +62,7 @@ const DetailPopup = ({ instrumentId, instrumentCode, onClose }) => {
   };
 
   const tabs = [
-    { id: 'tab1', label: 'Diagram', content: <PriceChart data={data.historicalPriceData} /> },
+    { id: 'tab1', label: 'نمودار', content: <CandlestickChart data={data.historicalPriceData} /> },
     { id: 'tab2', label: 'Specifications', content: <SpecificationsTab data={data.specificationsData} /> },
     { id: 'tab3', label: 'Trading Board', content: <div>Trading Board Content</div> },
     { id: 'tab4', label: 'Valuation', content: <div>Valuation Content</div> }

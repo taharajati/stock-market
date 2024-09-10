@@ -15,7 +15,7 @@ const Filter04 = ({ onFilterChange }) => {
     <>
     <div className='text-right my-3'>
       <span className='mr-6 text-right float-right ms-3' htmlFor="profitState">نوع اختیار</span>
-      <div className="text-right flex items-center justify-end mb-3 w-[10%] ml-auto">
+      <div className="text-right flex items-center justify-end mb-3 w-[10%] ml-auto  text-black">
         <Form>
           <Form.Group controlId="profitState">
             <Form.Select

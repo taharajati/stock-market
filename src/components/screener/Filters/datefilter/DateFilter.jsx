@@ -56,7 +56,7 @@ const DateFilter = ({ onFilterChange }) => {
 
       <div className='flex items-center mb-4'>
         <select
-          className='form-select border w-48'
+          className='form-select border w-48 text-black'
           value={selectedDueDate}
           onClick={handleFilterClick}
           onChange={(e) => setSelectedDueDate(e.target.value)}

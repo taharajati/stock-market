@@ -39,6 +39,9 @@ import { CgDetailsMore} from "react-icons/cg";
     const [sortOrder, setSortOrder] = useState('asc');
     const [calculatorVisible, setCalculatorVisible] = useState(false);
     const [detailVisible, setDetailVisible] = useState(false);
+
+
+    
     const columnStyles = {
     symbol_fa: {
       style: { width: '150px', textAlign: 'right', color: 'black',fontWeight:"bold" },
@@ -497,14 +500,14 @@ import { CgDetailsMore} from "react-icons/cg";
     setDetailVisible(true); // Show the DetailPopup
 };
   return (
-      <div className="mt-4 mx-auto p-4 w-full" dir="rtl">
+      <div className="mt-12 mx-auto p-4 w-[1600px] " dir="rtl">
           <div className="flex items-center justify-between mb-3 ">
               <div className="space-x-4">
                   {validGroups.map((groupKey) => (
                     <button
                     key={groupKey}
                     type="button"
-                    className={`px-3 py-1  ${selectedGroup === groupKey ? 'bg-[#2F657D] text-white px-4 py-2 rounded-lg scale-105 transition duration-500' : 'bg-[#F4F2F2] rounded-md'}`}
+                    className={`px-3 py-1 hover:bg-[color:var(--color-primary)] hover:text-white transition duration-500 ${selectedGroup === groupKey ? 'bg-[color:var(--color-bg-variant)]  text-white px-4 py-2 rounded-lg scale-105 transition duration-500' : 'bg-[#F4F2F2] rounded-md'}`}
                     onClick={() => setSelectedGroup(groupKey)}
                   >
                     {data && data.groups && data.groups[groupKey] ? data.groups[groupKey] : 'Unknown Group'}
@@ -518,7 +521,7 @@ import { CgDetailsMore} from "react-icons/cg";
                   className="table-container overflow-x-auto"
                   onMouseLeave={() => setHoveredRowIndex(null)}
               >
-                  <table className="table-auto border-collapse w-full">
+                  <table className="table-auto border-collapse w-full border border-spacing-5 ">
                       <thead className="bg-[#2F657D] text-white sticky top-0 z-2">
                           <tr>
                               <th></th>

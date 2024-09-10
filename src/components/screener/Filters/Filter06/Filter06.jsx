@@ -9,7 +9,7 @@ const Filter06 = ({ value, onFilterChange }) => {
     return (
         <div className='text-right my-3'>
                   <span className="mr-6 text-right float-right ms-3">ارزش معاملات (میلیارد ریال)</span>
-                  <div className="flex items-center justify-end mb-3 w-[14%] ml-auto m-1 ">
+                  <div className="flex items-center justify-end mb-3 w-[14%] ml-auto m-1 text-black">
             <input
             className='form-control border text-center w-48'
                 type="number"

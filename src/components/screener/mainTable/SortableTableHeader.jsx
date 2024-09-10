@@ -21,7 +21,7 @@ const SortableTableHeader = ({ column, criteria, order, onSort }) => {
               <span className="ml-1">{order === 'asc' ? ' 🔽 ' : ' 🔼 '}</span>
             )}
           </span>
-          <div className="info-icon-container mt-2 border border-gray-300 rounded-full p-1 w-8 h-8 flex items-center justify-center mx-1">
+          <div className="info-icon-container mt-2 border border-gray-300 rounded-full p-1 w-4 h-4 flex items-center justify-center mx-1">
           <InfoIcon text="این یک توضیح است" />
         </div>
         </div>

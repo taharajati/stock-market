@@ -29,12 +29,13 @@ const fetchData = async (instrumentId, adjusted) => {
   }
 };
 
-const DetailPopup = ({ instrumentId, instrumentCode, onClose }) => {
+const DetailPopup = ({ instrumentId, onClose }) => {
   const [activeTab, setActiveTab] = useState('tab1');
   const [data, setData] = useState({
     historicalPriceData: null,
     specificationsData: null
   });
+  const [symbolFa, setSymbolFa] = useState('');
 
   useEffect(() => {
     const loadData = async () => {
@@ -43,6 +44,17 @@ const DetailPopup = ({ instrumentId, instrumentCode, onClose }) => {
         historicalPriceData: fetchedData.historicalPriceData,
         specificationsData: fetchedData.specificationsData
       });
+
+      // Debugging log for fetchedData
+      console.log('Fetched Specifications Data:', fetchedData.specificationsData);
+
+      // Extract and set the symbol_fa if it exists
+      if (fetchedData.specificationsData && fetchedData.specificationsData.data && fetchedData.specificationsData.data.symbol_fa) {
+        setSymbolFa(fetchedData.specificationsData.data.symbol_fa);
+        console.log('Symbol FA:', fetchedData.specificationsData.data.symbol_fa); // Log the symbol
+      } else {
+        console.log('symbol_fa not found in specificationsData');
+      }
     };
 
     if (instrumentId) {
@@ -62,7 +74,7 @@ const DetailPopup = ({ instrumentId, instrumentCode, onClose }) => {
   };
 
   const tabs = [
-    { id: 'tab1', label: 'نمودار', content: <CandlestickChart data={data.historicalPriceData} /> },
+    { id: 'tab1', label: 'نمودار', content: <CandlestickChart data={data.historicalPriceData} data2={data.specificationsData} /> },
     { id: 'tab2', label: 'Specifications', content: <SpecificationsTab data={data.specificationsData} /> },
     { id: 'tab3', label: 'Trading Board', content: <div>Trading Board Content</div> },
     { id: 'tab4', label: 'Valuation', content: <div>Valuation Content</div> }
@@ -75,6 +87,12 @@ const DetailPopup = ({ instrumentId, instrumentCode, onClose }) => {
   return (
     <Modal onClose={onClose}>
       <div className="flex flex-col h-full bg-white p-4 m-2 rounded-lg max-w-full max-h-[95%] overflow-hidden relative">
+        
+        {/* Display Symbol at the top */}
+        <div className="text-center font-bold text-xl mb-4 text-[color:var(--color-primary-variant2)]">
+          {symbolFa || 'بارگذاری...'} {/* Display 'Loading...' if symbol is not yet available */}
+        </div>
+
         <div className="flex-1 overflow-y-auto p-4">
           {tabs.find((tab) => tab.id === activeTab).content}
         </div>

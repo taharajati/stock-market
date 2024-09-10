@@ -18,11 +18,11 @@ const Filter02 = ({ onFilterChange }) => {
         <Form>
           <Form.Group controlId="profitState">
             <Form.Select
-              className="form-control border text-center w-48"
+              className="form-control border text-center w-48  text-black"
               value={selectedValue}
               onChange={handleChange}
             >
-              <option value=""> </option>
+              <option className='' value=""> </option>
               <option value="ATM">At the Money</option>
               <option value="ITM">In the Money</option>
               <option value="OTM">Out of the Money</option>

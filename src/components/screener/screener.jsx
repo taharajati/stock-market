@@ -15,6 +15,8 @@ const Dashboard = () => {
         filter06: 1,
     });
 
+    const [dropdownOpen, setDropdownOpen] = useState(false); // Dropdown state
+
     const handleFilter02Change = (value) => {
         setFilterValues({ ...filterValues, filter02: value });
     };
@@ -32,31 +34,49 @@ const Dashboard = () => {
         setFilterValues({ ...filterValues, filter06: value });
     };
 
+    const toggleDropdown = () => {
+        setDropdownOpen(!dropdownOpen);
+    };
+
     return (
         <>
-            <div>
-                <Filter01 setFilterValue={(value) => setFilterValues({ ...filterValues, filter01: value })} />
+             
+                    
+            <div className='  float-right mx-6 bg-[color:var(--color-primary-variant2)] hover:bg-[color:var(--color-primary-variant)] rounded-lg scale-105 transition duration-500 text-white p-3   '>
+                <button className=' float-right flex-col' onClick={toggleDropdown}>فیلتر ها</button>
+                {dropdownOpen && (
+                    <div className="filter-dropdown mt-12">
+                        <div className="filter-item">
+                            <Filter01 setFilterValue={(value) => setFilterValues({ ...filterValues, filter01: value })} />
+                        </div>
+
+                        <div className="filter-item">
+                            <Filter02 onFilterChange={handleFilter02Change} />
+                        </div>
+
+                        <div className="filter-item">
+                            <Filter04 onFilterChange={handleFilter04Change} />
+                        </div>
+
+                        <div className="filter-item">
+                            <Filter06 value={filterValues.filter06} onFilterChange={handleFilter06Change} />
+                        </div>
+
+                        <div className="filter-item">
+                            <DateFilter onFilterChange={handleDateFilterChange} />
+                        </div>
+                    </div>
+                )}
+                
             </div>
+         
+           
+            <div className='my-9 float-right'>
 
-            <div>
-                <Filter02 onFilterChange={handleFilter02Change} />
-            </div>
-
-            <div>
-                <Filter04 onFilterChange={handleFilter04Change} />
-            </div>
-
-            <div>
-                <Filter06 value={filterValues.filter06} onFilterChange={handleFilter06Change} />
-            </div>
-
-            <div>
-                <DateFilter onFilterChange={handleDateFilterChange} />
-            </div>
-
-            <br />
-
-            <MyTable filterValues={filterValues} />
+             <MyTable filterValues={filterValues} />
+             </div>
+<br />
+            
         </>
     );
 };

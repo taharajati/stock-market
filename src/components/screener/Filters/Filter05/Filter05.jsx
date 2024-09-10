@@ -9,7 +9,7 @@ const Filter05 = ({ onFilterChange }) => {
   };
 
   return (
-    <div className='text-right flex items-center justify-end mb-3    ml-auto'>
+    <div className='text-right flex items-center justify-end mb-3  text-black  ml-auto'>
       <label>
         <input
           type="checkbox"

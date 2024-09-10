@@ -33,23 +33,30 @@ const Filter01 = ({ setFilterValue }) => {
   };
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+  }}
+  >در حال بارگذاری
+  
+  </div>
   }
 
   if (error) {
-    return <p>Error: {error.message}</p>;
+    return <p>خطا در دریافت: {error.message}</p>;
   }
 
   if (data.length === 0) {
-    return <p>No data available.</p>;
+    return <p>  اطلاعاتی در دسترس نیست</p>;
   }
 
   return (
     <div className="text-right my-3 mr-6">
       <span className=" my-1 text-right  float-right ms-3">نماد سهم پایه</span>
-      <div className="flex items-center justify-end mb-3 w-[15%] ml-auto m-1">
+      <div className="">
         <Select
-          className="w-48"
+          className="flex items-center justify-end mb-3 w-[200px] ml-auto m-1  text-black"
           value={selectedItem}
           onChange={handleSelectChange}
           options={options}

@@ -47,16 +47,16 @@ const Nav = () => {
 
   return (
     <div className="flex flex-col items-center pb-9 text-center text-[color:var(--color-light)] bg-white">
-      <div className="flex gap-5 justify-between items-start self-stretch px-6 py-3 w-full whitespace-nowrap bg-[color:var(--color-primary)] max-md:flex-wrap max-md:pl-5 max-md:max-w-full">
+      <div className="flex gap-5 justify-between items-start self-stretch px-6 py-3 w-full whitespace-nowrap bg-[color:var(--color-primary)]  max-md:flex-wrap max-md:pl-5 max-md:max-w-full">
         <div className='flex gap-5 justify-between'>
-          <Link to="/login" onClick={logout}>خروج</Link>
-          <FaUserCircle className='mt-1' />
+          <Link to="/login" onClick={logout} className='hover:bg-[color:var(--color-bg-variant)] p-2 rounded-lg scale-105 transition duration-500'>خروج</Link>
+          {/* <FaUserCircle className='mt-1 top-20' />*/}
         </div>
-        <div className="flex gap-5 justify-between">
-          {permissions?.operational_strategies && <Link to="/operational_strategies">استراتژی های عملیاتی</Link>}
-          {permissions?.calculator && <Link to="/calculator">ماشین حساب</Link>}
-          {permissions?.screener && <Link to="/screener">دیدبان</Link>}
-          {permissions?.home && <Link to="/home">صفحه اصلی </Link>}
+        <div className="flex gap-5 justify-between ">
+          {permissions?.operational_strategies && <Link to="/operational_strategies " className='hover:bg-[color:var(--color-bg-variant)] p-2 rounded-lg scale-105 transition duration-500 '>استراتژی های عملیاتی</Link>}
+          {permissions?.calculator && <Link to="/calculator" className='hover:bg-[color:var(--color-bg-variant)] p-2 rounded-lg scale-105 transition duration-500'>ماشین حساب</Link>}
+          {permissions?.screener && <Link to="/screener" className='hover:bg-[color:var(--color-bg-variant)] p-2 rounded-lg scale-105 transition duration-500'>دیدبان</Link>}
+          {permissions?.home && <Link to="/home" className='hover:bg-[color:var(--color-bg-variant)] p-2 rounded-lg scale-105 transition duration-500'>صفحه اصلی </Link>}
 
         </div>
       </div>

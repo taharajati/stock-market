@@ -170,7 +170,7 @@ const ChartIV = () => {
                   plugins: {
                     title: {
                       display: true,
-                      text: `${chartOptions[selectedField].title} در برابر قیمت اعتصاب`,
+                      text: `${chartOptions[selectedField].title}   `,
                     },
                     legend: {
                       position: 'top',

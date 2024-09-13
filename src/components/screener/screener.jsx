@@ -42,8 +42,8 @@ const Dashboard = () => {
         <>
              
                     
-            <div className='  float-right mx-6 bg-[color:var(--color-primary-variant2)] hover:bg-[color:var(--color-primary-variant)] rounded-lg scale-105 transition duration-500 text-white p-3   '>
-                <button className=' float-right flex-col' onClick={toggleDropdown}>فیلتر ها</button>
+            <div className='  float-right mx-6  rounded-lg scale-105  text-black p-3   '>
+                <button className=' p-2 rounded-md float-right flex-col bg-[color:var(--color-primary-variant2)] hover:bg-[color:var(--color-primary-variant)] transition duration-500   text-white' onClick={toggleDropdown}>فیلتر ها</button>
                 {dropdownOpen && (
                     <div className="filter-dropdown mt-12">
                         <div className="filter-item">
@@ -71,7 +71,7 @@ const Dashboard = () => {
             </div>
          
            
-            <div className='my-9 float-right'>
+            <div className=' float-right'>
 
              <MyTable filterValues={filterValues} />
              </div>

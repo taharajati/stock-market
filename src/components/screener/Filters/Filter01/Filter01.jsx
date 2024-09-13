@@ -56,7 +56,7 @@ const Filter01 = ({ setFilterValue }) => {
       <span className=" my-1 text-right  float-right ms-3">نماد سهم پایه</span>
       <div className="">
         <Select
-          className="flex items-center justify-end mb-3 w-[200px] ml-auto m-1  text-black"
+          className="flex items-center justify-end mb-3 w-[200px] ml-auto m-1  text-black" 
           value={selectedItem}
           onChange={handleSelectChange}
           options={options}

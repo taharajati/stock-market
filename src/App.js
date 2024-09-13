@@ -66,6 +66,7 @@ import OpStrategies from './components/operational_strategies/operational_strate
 import Home from './components/operational_strategies/operational_strategies';
 
 import { ReportProvider } from './components/context';
+import ChartIV from './components/Chartiv/ChartIV';
 
 export const PermissionsContext = createContext();
 export const LogoutContext = createContext();
@@ -128,6 +129,7 @@ function App() {
               <Route path="/screener" element={isAuthenticated ? <Screener /> : <Navigate to="/login" />} />
               <Route path="/home" element={isAuthenticated ? <Home /> : <Navigate to="/login" />} />
               <Route path="/operational_strategies" element={isAuthenticated ? <OpStrategies /> : <Navigate to="/login" />} />
+              <Route path="/ChartIV" element={isAuthenticated ? <ChartIV /> : <Navigate to="/login" />} />
               <Route path="/" element={<Navigate to="/login" />} />
 
             </Routes>

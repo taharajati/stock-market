@@ -18,7 +18,7 @@ const Filter02 = ({ onFilterChange }) => {
         <Form>
           <Form.Group controlId="profitState">
             <Form.Select
-              className="form-control border text-center w-48  text-black"
+              className="form-control border text-center w-48  text-black" 
               value={selectedValue}
               onChange={handleChange}
             >

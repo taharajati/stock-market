@@ -500,7 +500,7 @@ import { CgDetailsMore} from "react-icons/cg";
     setDetailVisible(true); // Show the DetailPopup
 };
   return (
-      <div className="mt-12 mx-auto p-4 w-[1600px] " dir="rtl">
+      <div className=" mx-auto p-4 w-[1600px] " dir="rtl">
           <div className="flex items-center justify-between mb-3 ">
               <div className="space-x-4">
                   {validGroups.map((groupKey) => (

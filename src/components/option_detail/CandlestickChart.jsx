@@ -30,7 +30,7 @@ const CandlestickChart = ({ data }) => {
         },
         layout: {
           textColor: '#000000', // Set text color to improve readability
-          background: { type: 'solid', color: '#e6e6e6' }, // Optional: dark background for better contrast
+          background: { type: 'solid', color: '#f8f8f8' }, // Optional: dark background for better contrast
         },
       });
 

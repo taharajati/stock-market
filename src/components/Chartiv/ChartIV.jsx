@@ -1,29 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import { Line, Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend } from 'chart.js';
 
 // Register Chart.js components
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend);
 
 const ChartIV = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [chartOptions, setChartOptions] = useState({});
   const [selectedField, setSelectedField] = useState('implied_volatility'); // Default filter
   const [selectedDueDate, setSelectedDueDate] = useState('');
   const [selectedOptionType, setSelectedOptionType] = useState('');
 
-  // Fetch data from the API
-  const fetchData = async () => {
+  // Fetch data from the API for charts
+  const fetchChartData = async () => {
     try {
       const response = await fetch('http://5.34.198.87:8080/api/options/option_strike_chart');
       const jsonData = await response.json();
 
-      // Log the response to see its structure
-      console.log('API Response:', jsonData);
-
-      // Check the structure and set data
-      if (jsonData && jsonData.data && Array.isArray(jsonData.data) && jsonData.data.length > 0) {
+      if (jsonData && jsonData.data && Array.isArray(jsonData.data)) {
         setData(jsonData.data);
       } else {
         throw new Error('Data format is not an array or is empty');
@@ -35,8 +32,25 @@ const ChartIV = () => {
     }
   };
 
+  // Fetch chart options from the API
+  const fetchChartOptions = async () => {
+    try {
+      const response = await fetch('http://5.34.198.87:8080/api/options/option_strike_chart_option');
+      const jsonData = await response.json();
+
+      if (jsonData && jsonData.data) {
+        setChartOptions(jsonData.data);
+      } else {
+        throw new Error('Chart options data is missing or invalid');
+      }
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   useEffect(() => {
-    fetchData();
+    fetchChartData();
+    fetchChartOptions();
   }, []);
 
   // Extract unique values for filters
@@ -45,60 +59,60 @@ const ChartIV = () => {
     return Array.from(new Set(values)).filter(value => value != null);
   };
 
-  // Group data by chart field type
-  const groupDataByField = (data, field) => {
-    return data.map((item, index) => ({
-      label: `Chart ${index + 1}`,
-      labels: item.strike_price,
-      datasets: [
-        {
-          label: field,
-          data: item[field],
-          borderColor: 'rgba(75, 192, 192, 1)',
-          backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          fill: true,
-          tension: 0.4,
-        }
-      ]
-    }));
-  };
-
   // Filter data based on selected due date and option type
   const filteredData = data?.filter(item =>
     (selectedDueDate ? item.end_date_fa === selectedDueDate : true) &&
     (selectedOptionType ? item.option_type === selectedOptionType : true)
   );
 
-  // Get data for selected field
-  const filteredCharts = filteredData ? groupDataByField(filteredData, selectedField) : [];
+  // Prepare chart data with multiple y-axes
+  const getChartData = () => {
+    const fieldOptions = chartOptions[selectedField];
+    if (!fieldOptions) return [];
+
+    return filteredData?.map((item, index) => {
+      const datasets = fieldOptions.yaxis.map(yaxisConfig => ({
+        label: yaxisConfig.name,
+        data: item[yaxisConfig.variable],
+        borderColor: 'rgba(75, 192, 192, 1)',
+        backgroundColor: yaxisConfig.chart_type === 'bar' ? 'rgba(75, 192, 192, 0.2)' : 'transparent',
+        type: yaxisConfig.chart_type,
+        fill: yaxisConfig.chart_type === 'line',
+        tension: yaxisConfig.chart_type === 'line' ? 0.4 : 0,
+        yAxisID: `y-axis-${yaxisConfig.yaxis_id}`,
+      }));
+
+      return {
+        labels: item.strike_price,
+        datasets,
+      };
+    }) || [];
+  };
+
+  const filteredCharts = getChartData();
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
   if (!data) return <div>No data available to display.</div>;
 
   // List of field types for buttons
-  const fieldTypes = [
-    { key: 'implied_volatility', label: 'نوسان ضمنی' },
-    { key: 'volume', label: 'حجم' },
-    { key: 'open_interest', label: 'سود باز' },
-    { key: 'leverage', label: 'اهرم' },
-    { key: 'delta', label: 'دلتا' },
-    { key: 'theta', label: 'تتا' },
-    { key: 'today_return', label: 'بازده امروز' }
-  ];
+  const fieldTypes = Object.keys(chartOptions).map(key => ({
+    key,
+    label: chartOptions[key].title,
+  }));
 
   return (
-    <div className="chart-container ">
-      <h3 className='mb-6 mr-6 text-right text-[30px] text-[color:var(--color-primary-variant)]'>اطلاعات نمودار </h3>
+    <div className="chart-container">
+      <h3 className='mb-6 mr-6 text-right text-[30px] text-[color:var(--color-primary-variant)]'>اطلاعات نمودار</h3>
 
-      {/* Due Date Filter */} 
+      {/* Due Date Filter */}
       <div className="filter-container text-right my-3 mr-6">
         <label htmlFor="dueDateFilter" className="my-1 text-right float-right ms-3">تاریخ سر رسید</label>
         <select
           id="dueDateFilter"
           value={selectedDueDate}
           onChange={(e) => setSelectedDueDate(e.target.value)}
-          className="filter-select text-right flex items-center justify-end mb-3 w-[200px] ml-auto m-1 text-black border "
+          className="filter-select text-right flex items-center justify-end mb-3 w-[200px] ml-auto m-1 text-black border"
         >
           <option value="">انتخاب همه تاریخ‌ها</option>
           {getUniqueValues('end_date_fa').map((date, index) => (
@@ -147,7 +161,7 @@ const ChartIV = () => {
         <h4>{fieldTypes.find(type => type.key === selectedField)?.label}</h4>
         {filteredCharts.map((chart, chartIndex) => (
           <div key={chartIndex} className="chart-box mb-4">
-            <h5>{chart.label}</h5>
+            <h5>Chart {chartIndex + 1}</h5>
             {chart.labels.length > 0 ? (
               <Line
                 data={chart}
@@ -156,7 +170,7 @@ const ChartIV = () => {
                   plugins: {
                     title: {
                       display: true,
-                      text: `${fieldTypes.find(type => type.key === selectedField)?.label} در برابر قیمت اعتصاب`,
+                      text: `${chartOptions[selectedField].title} در برابر قیمت اعتصاب`,
                     },
                     legend: {
                       position: 'top',
@@ -174,7 +188,31 @@ const ChartIV = () => {
                         display: true,
                         text: fieldTypes.find(type => type.key === selectedField)?.label,
                       },
+                      // Adding multiple y-axes
+                      ticks: {
+                        callback: function(value) {
+                          return value.toFixed(2); // Format ticks
+                        }
+                      },
+                      beginAtZero: true,
                     },
+                    // Define y-axes based on configuration
+                    ...chartOptions[selectedField].yaxis.reduce((acc, yaxisConfig) => {
+                      acc[`y-axis-${yaxisConfig.yaxis_id}`] = {
+                        type: yaxisConfig.chart_type === 'bar' ? 'linear' : 'linear',
+                        position: yaxisConfig.yaxis_id === 0 ? 'left' : 'right',
+                        title: {
+                          display: true,
+                          text: yaxisConfig.name,
+                        },
+                        ticks: {
+                          callback: function(value) {
+                            return value.toFixed(2); // Format ticks
+                          }
+                        },
+                      };
+                      return acc;
+                    }, {}),
                   },
                 }}
               />

@@ -17,7 +17,7 @@ const ChartIV = () => {
   // Fetch data from the API for charts
   const fetchChartData = async () => {
     try {
-      const response = await fetch('http://5.34.198.87:8080/api/options/option_strike_chart');
+      const response = await fetch('https://api.optionscreener.ir/api/options/option_strike_chart');
       const jsonData = await response.json();
 
       if (jsonData && jsonData.data && Array.isArray(jsonData.data)) {
@@ -35,7 +35,7 @@ const ChartIV = () => {
   // Fetch chart options from the API
   const fetchChartOptions = async () => {
     try {
-      const response = await fetch('http://5.34.198.87:8080/api/options/option_strike_chart_option');
+      const response = await fetch('https://api.optionscreener.ir/api/options/option_strike_chart_option');
       const jsonData = await response.json();
 
       if (jsonData && jsonData.data) {

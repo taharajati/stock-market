@@ -160,10 +160,11 @@ const getClosestStrikePrices= (strikePrices, ua_final) => {
     value: interpolatedValue ,  // Use dynamic value from annotation or ua_final
     borderColor: 'blue',  // Default color for ua_final annotation
     borderWidth: 2,
+    borderDash: [4,4],
     label: {
       content: 'UA Final',
       enabled: true,
-      position: 'start',
+      position: 'center',
     },
   };
 
@@ -293,8 +294,8 @@ const getClosestStrikePrices= (strikePrices, ua_final) => {
           <div key={chartIndex} className="chart-box my-4 ">
             <div className="chart-meta flex space-x-5 text-lg justify-center">
               <p className='bg-[color:var(--color-bg)] text-black  rounded-lg px-4 py-2'>نماد: {chart.metaData.ua_instrument_symbol_fa}</p>
-              <p className='bg-[color:var(--color-bg-variant)] text-white  rounded-lg px-4 py-2'>نوع اختیار: {chart.metaData.option_type_fa}</p>
-              <p className='bg-[color:var(--color-primary-variant)] text-white  rounded-lg px-4 py-2'>تاریخ سررسید: {chart.metaData.end_date_fa}</p>
+              <p className='bg-[color:var(--color-bg)] text-black  rounded-lg px-4 py-2'>نوع اختیار: {chart.metaData.option_type_fa}</p>
+              <p className='bg-[color:var(--color-bg)] text-black  rounded-lg px-4 py-2'>تاریخ سررسید: {chart.metaData.end_date_fa}</p>
             </div>
             {chart.labels.length > 0 ? (
         <Line

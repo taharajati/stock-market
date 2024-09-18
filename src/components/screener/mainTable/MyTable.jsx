@@ -516,7 +516,7 @@ import { CgDetailsMore} from "react-icons/cg";
               </div>
           </div>
 
-          <div className="m-2 items-center ">
+          <div className="m-2 items-center  w-[1900px]">
               <div
                   className="table-container overflow-x-auto"
                   onMouseLeave={() => setHoveredRowIndex(null)}

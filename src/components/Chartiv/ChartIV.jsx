@@ -145,13 +145,8 @@ const getClosestStrikePrices= (strikePrices, ua_final) => {
       }));
 
 
-     console.log("strikePrices",strikePrices)
-
-      console.log(`x1: ${x1}, y1: ${y1}`);
-
-      console.log(`x2: ${x2}, y2: ${y2}`);
+   
       const interpolatedValue = interpolateValue(item.ua_final, x1, y1, x2, y2);
-      console.log("interpolatedValue",interpolatedValue)
 
    // Default annotation for ua_final for each chart
    const defaultAnnotation = {
@@ -180,7 +175,6 @@ const getClosestStrikePrices= (strikePrices, ua_final) => {
       position: 'start',
     } : undefined,
   })) || [defaultAnnotation];  // Include defaultAnnotation if no other annotations
-      console.log("annotationss",annotations)
 
       return {
         labels: item.strike_price,
@@ -212,6 +206,7 @@ const getClosestStrikePrices= (strikePrices, ua_final) => {
     label: chartOptions[key].title,
   }));
 
+  console.log("filteredCharts",filteredCharts)
   return (
     <div className="chart-container">
       <h3 className='mb-6 mr-6 text-right text-[30px] text-[color:var(--color-primary-variant)]'>اطلاعات نمودار</h3>
@@ -328,10 +323,17 @@ const getClosestStrikePrices= (strikePrices, ua_final) => {
                   const pointIndex = tooltipItem.dataIndex;
                   const symbol = filteredCharts[chartIndex].metaData.symbol_fa[pointIndex];
                   const value = tooltipItem.raw;
-                  return `نماد پایه: ${symbol}, ارزش: ${value}`;
+                  console.log("tooltipItem",tooltipItem)
+                  console.log("chartIndex",chartIndex)
+                  console.log("pointIndex",pointIndex)
+                  console.log("filteredCharts",filteredCharts)
+                  return [`نماد: ${symbol}`, `مقدار: ${value}`];
                 },
               },
+              titleFont: { size: 17 }, // Increase the title font size
+              bodyFont: { size: 19 },  // Increase the body font size
             },
+            
             annotation: {
               annotations: chart.annotations, // Use the annotations here
             },

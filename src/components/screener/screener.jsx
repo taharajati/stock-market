@@ -41,7 +41,7 @@ const Dashboard = () => {
     return (
         <>
              
-                    
+                    <div className=''>
             <div className='  float-right mx-6  rounded-lg scale-105  text-black p-3   '>
                 <button className=' p-2 rounded-md float-right flex-col bg-[color:var(--color-primary-variant2)] hover:bg-[color:var(--color-primary-variant)] transition duration-500   text-white' onClick={toggleDropdown}>فیلتر ها</button>
                 {dropdownOpen && (
@@ -69,14 +69,15 @@ const Dashboard = () => {
                 )}
                 
             </div>
-         
+            <br />
+            <br />
            
-            <div className=' float-right'>
+<br />
+            <div className=' float-end  '>
 
              <MyTable filterValues={filterValues} />
              </div>
-<br />
-            
+            </div>
         </>
     );
 };

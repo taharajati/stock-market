@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Modal from '../screener/mainTable/Modal'; // Ensure the correct path
 import CandlestickChart from './CandlestickChart'; // Adjust path as necessary
 import SpecificationsTab from './SpecificationsTab'; // Adjust path as necessary
+import TradingBoard from './TradingBoard'; // Adjust path as necessary
 
 const fetchData = async (instrumentId, adjusted) => {
   if (!instrumentId) {
@@ -75,8 +76,8 @@ const DetailPopup = ({ instrumentId, onClose }) => {
 
   const tabs = [
     { id: 'tab1', label: 'نمودار', content: <CandlestickChart data={data.historicalPriceData} data2={data.specificationsData} /> },
-    { id: 'tab2', label: 'Specifications', content: <SpecificationsTab data={data.specificationsData} /> },
-    { id: 'tab3', label: 'Trading Board', content: <div>Trading Board Content</div> },
+    { id: 'tab2', label: 'مشخصات', content: <SpecificationsTab data={data.specificationsData} /> },
+    { id: 'tab3', label: ' مشخصات دارایی پایه', content: <TradingBoard data={data.specificationsData} /> },
     { id: 'tab4', label: 'Valuation', content: <div>Valuation Content</div> }
   ];
 
@@ -86,7 +87,7 @@ const DetailPopup = ({ instrumentId, onClose }) => {
 
   return (
     <Modal onClose={onClose}>
-      <div className="flex flex-col h-full bg-white p-4 m-2 rounded-lg max-w-full max-h-[95%] overflow-hidden relative">
+      <div className="flex flex-col h-full bg-white p-4 m-2 rounded-lg max-w-full max-h-[95%] overflow-hidden relative transition-all duration-300 ease-in-out md:max-w-[800px] lg:max-w-[1000px] xl:max-w-[1500px] 2xl:max-w-[1800px] ">
         
         {/* Display Symbol at the top */}
         <div className="text-center font-bold text-xl mb-4 text-[color:var(--color-primary-variant2)]">
@@ -97,7 +98,7 @@ const DetailPopup = ({ instrumentId, onClose }) => {
           {tabs.find((tab) => tab.id === activeTab).content}
         </div>
 
-        <div className="flex items-center justify-center mt-auto">
+        <div className="flex items-center justify-center mt-auto flex-wrap">
           <button
             className="text-gray-500 p-4 text-2xl hover:text-[#2F657D] transition-colors duration-300"
             onClick={() => handleArrowClick(-1)}
@@ -110,9 +111,7 @@ const DetailPopup = ({ instrumentId, onClose }) => {
             {tabs.map((tab) => (
               <button
                 key={tab.id}
-                className={`flex-1 text-center py-2 transition-colors duration-300 ${
-                  activeTab === tab.id ? 'text-[#2F657D]' : 'text-gray-500'
-                }`}
+                className={`flex-1 text-center py-2 transition-colors duration-300 ${activeTab === tab.id ? 'text-[#2F657D]' : 'text-gray-500'}`}
                 onClick={() => handleTabChange(tab.id)}
               >
                 {tab.label}

@@ -521,8 +521,8 @@ import { CgDetailsMore} from "react-icons/cg";
                   className="table-container overflow-x-auto"
                   onMouseLeave={() => setHoveredRowIndex(null)}
               >
-                  <table className="table-auto border-collapse w-full border border-spacing-5 ">
-                      <thead className="bg-[#2F657D] text-white sticky top-0 z-2">
+      <table className="min-w-full table-auto border-collapse border border-gray-300 text-sm lg:text-base">
+      <thead className="bg-[#2F657D] text-white sticky top-0 z-2">
                           <tr>
                               <th></th>
                               {columns.map((column, index) => (

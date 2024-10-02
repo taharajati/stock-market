@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Line, Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend } from 'chart.js'; // Import BarElement here
 import annotationPlugin from 'chartjs-plugin-annotation';
 
 // Register Chart.js components and annotation plugin
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, annotationPlugin);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend, annotationPlugin); // Register BarElement here
 
 
 const ChartIV = () => {
@@ -138,7 +138,7 @@ const getClosestStrikePrices= (strikePrices, ua_final) => {
         data: item[yaxisConfig.variable],
         borderColor: yaxisConfig.color || 'rgba(75, 192, 192, 1)',
         backgroundColor: yaxisConfig.chart_type === 'bar' ? (yaxisConfig.color || 'rgba(75, 192, 192, 0.2)') : 'transparent',
-        type: yaxisConfig.chart_type,
+        type: yaxisConfig.chart_type, // Ensure this is correctly set
         fill: yaxisConfig.chart_type === 'line',
         tension: 0,  // Set this to 0 for straight lines
         yAxisID: `y-axis-${yaxisConfig.yaxis_id}`,

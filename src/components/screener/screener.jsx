@@ -45,26 +45,16 @@ const Dashboard = () => {
             <div className='  float-right mx-6  rounded-lg scale-105  text-black p-3   '>
                 <button className=' p-2 rounded-md float-right flex-col bg-[color:var(--color-primary-variant2)] hover:bg-[color:var(--color-primary-variant)] transition duration-500   text-white' onClick={toggleDropdown}>فیلتر ها</button>
                 {dropdownOpen && (
-                    <div className="filter-dropdown mt-12">
-                        <div className="filter-item">
+                    <div className="filter-dropdown mt-12 ">
                             <Filter01 setFilterValue={(value) => setFilterValues({ ...filterValues, filter01: value })} />
-                        </div>
 
-                        <div className="filter-item">
                             <Filter02 onFilterChange={handleFilter02Change} />
-                        </div>
 
-                        <div className="filter-item">
                             <Filter04 onFilterChange={handleFilter04Change} />
-                        </div>
 
-                        <div className="filter-item">
                             <Filter06 value={filterValues.filter06} onFilterChange={handleFilter06Change} />
-                        </div>
 
-                        <div className="filter-item">
                             <DateFilter onFilterChange={handleDateFilterChange} />
-                        </div>
                     </div>
                 )}
                 

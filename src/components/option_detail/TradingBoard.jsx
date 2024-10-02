@@ -5,7 +5,6 @@ const TradingBoard = ({ data }) => {
     return <div>بارگذاری...</div>;
   }
 
-  // Extracting relevant data
   const {
     ua_instrument_id,
     ua_instrument_code,
@@ -20,38 +19,87 @@ const TradingBoard = ({ data }) => {
   } = data.data;
 
   return (
-    <div className="p-4 bg-white rounded-lg shadow">
-      <h2 className="text-lg font-bold mb-4">مشخصات دارایی پایه</h2>
-      <div className="grid grid-cols-2 gap-4 text-right">
+    <div className="p-4">
+      <div className="grid grid-cols-2 gap-4 w-[650px] mr-6">
         <div>
-          <span className="font-bold">نماد پایه: </span>{ua_instrument_symbol_fa}
+          <div className="float-right">
+            <span className="font-bold">نماد پایه: </span>
+          </div>
+          <div className="float-left">
+            {ua_instrument_symbol_fa}
+          </div>
         </div>
         <div>
-          <span className="font-bold">قیمت پایانی: </span>{ua_final}
+          <div className="float-right">
+            <span className="font-bold">قیمت پایانی: </span>
+          </div>
+          <div className="float-left">
+            {ua_final}
+          </div>
         </div>
         <div>
-          <span className="font-bold">قیمت آخرین معامله: </span>{ua_close}
+          <div className="float-right">
+            <span className="font-bold">قیمت آخرین معامله: </span>
+          </div>
+          <div className="float-left">
+            {ua_close}
+          </div>
         </div>
         <div>
-          <span className="font-bold">حجم معاملات: </span>{ua_volume_count}
+          <div className="float-right">
+            <span className="font-bold">حجم معاملات: </span>
+          </div>
+          <div className="float-left">
+            {ua_volume_count}
+          </div>
         </div>
         <div>
-          <span className="font-bold">ارزش معاملات: </span>{ua_volume}
+          <div className="float-right">
+            <span className="font-bold">ارزش معاملات: </span>
+          </div>
+          <div className="float-left">
+            {ua_volume}
+          </div>
         </div>
         <div>
-          <span className="font-bold">نوسان‌پذیری هفته: </span>{ua_volatility_week}%
+          <div className="float-right">
+            <span className="font-bold">نوسان‌پذیری هفته: </span>
+          </div>
+          <div className="float-left">
+            {ua_volatility_week}%
+          </div>
         </div>
         <div>
-          <span className="font-bold">نوسان‌پذیری سال: </span>{ua_volatility_year}%
+          <div className="float-right">
+            <span className="font-bold">نوسان‌پذیری سال: </span>
+          </div>
+          <div className="float-left">
+            {ua_volatility_year}%
+          </div>
         </div>
         <div>
-          <span className="font-bold">نوسان‌پذیری روز: </span>{ua_volatility_day}%
+          <div className="float-right">
+            <span className="font-bold">نوسان‌پذیری روز: </span>
+          </div>
+          <div className="float-left">
+            {ua_volatility_day}%
+          </div>
         </div>
         <div>
-          <span className="font-bold">کد نماد پایه: </span>{ua_instrument_code}
+          <div className="float-right">
+            <span className="font-bold">کد نماد پایه: </span>
+          </div>
+          <div className="float-left">
+            {ua_instrument_code}
+          </div>
         </div>
         <div>
-          <span className="font-bold">شناسه نماد پایه: </span>{ua_instrument_id}
+          <div className="float-right">
+            <span className="font-bold">شناسه نماد پایه: </span>
+          </div>
+          <div className="float-left">
+            {ua_instrument_id}
+          </div>
         </div>
       </div>
     </div>

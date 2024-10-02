@@ -41,249 +41,88 @@ import { CgDetailsMore} from "react-icons/cg";
     const [detailVisible, setDetailVisible] = useState(false);
 
 
-    
     const columnStyles = {
-    symbol_fa: {
-      style: { width: '150px', textAlign: 'right', color: 'black',fontWeight:"bold" },
-
-    },
-    a_factor: {
-      style: { textAlign: 'center', color: 'black' },
-
-    },
-    b_factor: {
-      style: { textAlign: 'center', color: 'black' },
-
-    },
-    c_factor: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    contract_size: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    days_to_maturity: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    days_to_maturity_business_days: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    begin_date: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-
-    end_date: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-
-    industry_code: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    industry_name: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    instrument_code: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    instrument_id: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-
-
-    average_spread: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    average_spread_percent_of_mid_price: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-
-
-    bid_ask_spread_percent: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    bid_ask_spread_score: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-
-    bs_price_to_buy_price: {
-      style: { textAlign: 'center'},
-    },
-    bs_price_to_sell_price: {
-      style: { textAlign: 'center'},
-    },
-    buy_positions: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    buy_price: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-
-    close: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-
-
-    final: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    high: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    implied_volatility_last: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    implied_volatility_max_all: {
-      style: { textAlign: 'center', color: 'black' },
-    },implied_volatility_max_month: {
-      style: { textAlign: 'center', color: 'black' },
-    },implied_volatility_mean_month: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    implied_volatility_min_all: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    implied_volatility_min_month: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    implied_volatility_rank: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    implied_volatility_to_average_month: {
-      style: { textAlign: 'center', color: 'black' },
-    },implied_volatility_to_same_ua_implied_volatility_percent: {
-      style: { textAlign: 'center', color: 'black' },
-    },implied_volatility_vs_realized_volatility_month: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-
-    intrinsic_value_bs: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    is_tab: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    liquidity_score: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    low: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    open: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    notional_value: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    old: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-
-    open_interest_score: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    option_status: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    option_type: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    option_type_fa: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    probability_of_profit: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    put_call_ratio: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    rho: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    theta: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    delta: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    gamma: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    vega: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-
-    same_ua_average_implied_volatility: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    sell_positions: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    sell_price: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    strike_price: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-
-    trades_count: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    ua_close: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    ua_final: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    ua_instrument_code: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    ua_instrument_id: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    ua_instrument_symbol_fa: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    ua_volatility_day: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    ua_volatility_week: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    ua_volatility_year: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    ua_volume: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    ua_volume_count: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-
-    volatility_skew_horizontal: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    volatility_skew_horizontal_value: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    volatility_skew_vertical: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    volatility_skew_vertical_value: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    volume: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    volume_count: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    volume_score: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-    yesterday_positions: {
-      style: { textAlign: 'center', color: 'black' },
-    },
-
-    // Add more columns as needed
+      symbol_fa: { style: { textAlign: 'center', padding: '10px' } },
+      a_factor: { style: { textAlign: 'center', padding: '10px' } },
+      b_factor: { style: { textAlign: 'center', padding: '10px' } },
+      c_factor: { style: { textAlign: 'center', padding: '10px' } },
+      contract_size: { style: { textAlign: 'center', padding: '10px' } },
+      today_return: { style: { textAlign: 'center', padding: '10px' } },
+      strike_price_ua_price_difference: { style: { textAlign: 'center', padding: '10px' } },
+      required_change_per_day: { style: { textAlign: 'center', padding: '10px' } },
+      ua_final: { style: { textAlign: 'center', padding: '10px' } },
+      ua_close: { style: { textAlign: 'center', padding: '10px' } },
+      strike_price: { style: { textAlign: 'center', padding: '10px' } },
+      end_date_fa: { style: { textAlign: 'center', padding: '10px' } },
+      leverage: { style: { textAlign: 'center', padding: '10px' } },
+      days_to_maturity: { style: { textAlign: 'center', padding: '10px' } },
+      implied_volatility_sell_price: { style: { textAlign: 'center', padding: '10px' } },
+      ua_instrument_symbol_fa: { style: { textAlign: 'center', padding: '10px' } },
+      days_to_maturity_business_days: { style: { textAlign: 'center', padding: '10px' } },
+      begin_date: { style: { textAlign: 'center', padding: '10px' } },
+      end_date: { style: { textAlign: 'center', padding: '10px' } },
+      industry_code: { style: { textAlign: 'center', padding: '10px' } },
+      industry_name: { style: { textAlign: 'center', padding: '10px' } },
+      instrument_code: { style: { textAlign: 'center', padding: '10px' } },
+      instrument_id: { style: { textAlign: 'center', padding: '10px' } },
+      average_spread: { style: { textAlign: 'center', padding: '10px' } },
+      average_spread_percent_of_mid_price: { style: { textAlign: 'center', padding: '10px' } },
+      bid_ask_spread_percent: { style: { textAlign: 'center', padding: '10px' } },
+      bid_ask_spread_score: { style: { textAlign: 'center', padding: '10px' } },
+      bs_price_to_buy_price: { style: { textAlign: 'center', padding: '10px' } },
+      bs_price_to_sell_price: { style: { textAlign: 'center', padding: '10px' } },
+      buy_positions: { style: { textAlign: 'center', padding: '10px' } },
+      buy_price: { style: { textAlign: 'center', padding: '10px' } },
+      close: { style: { textAlign: 'center', padding: '10px' } },
+      final: { style: { textAlign: 'center', padding: '10px' } },
+      high: { style: { textAlign: 'center', padding: '10px' } },
+      implied_volatility_last: { style: { textAlign: 'center', padding: '10px' } },
+      implied_volatility_max_all: { style: { textAlign: 'center', padding: '10px' } },
+      implied_volatility_max_month: { style: { textAlign: 'center', padding: '10px' } },
+      implied_volatility_mean_month: { style: { textAlign: 'center', padding: '10px' } },
+      implied_volatility_min_all: { style: { textAlign: 'center', padding: '10px' } },
+      implied_volatility_min_month: { style: { textAlign: 'center', padding: '10px' } },
+      implied_volatility_rank: { style: { textAlign: 'center', padding: '10px' } },
+      implied_volatility_to_average_month: { style: { textAlign: 'center', padding: '10px' } },
+      implied_volatility_to_same_ua_implied_volatility_percent: { style: { textAlign: 'center', padding: '10px' } },
+      implied_volatility_vs_realized_volatility_month: { style: { textAlign: 'center', padding: '10px' } },
+      intrinsic_value_bs: { style: { textAlign: 'center', padding: '10px' } },
+      is_tab: { style: { textAlign: 'center', padding: '10px' } },
+      liquidity_score: { style: { textAlign: 'center', padding: '10px' } },
+      low: { style: { textAlign: 'center', padding: '10px' } },
+      open: { style: { textAlign: 'center', padding: '10px' } },
+      notional_value: { style: { textAlign: 'center', padding: '10px' } },
+      old: { style: { textAlign: 'center', padding: '10px' } },
+      open_interest_score: { style: { textAlign: 'center', padding: '10px' } },
+      option_status: { style: { textAlign: 'center', padding: '10px' } },
+      option_type: { style: { textAlign: 'center', padding: '10px' } },
+      option_type_fa: { style: { textAlign: 'center', padding: '10px' } },
+      probability_of_profit: { style: { textAlign: 'center', padding: '10px' } },
+      put_call_ratio: { style: { textAlign: 'center', padding: '10px' } },
+      rho: { style: { textAlign: 'center', padding: '10px' } },
+      theta: { style: { textAlign: 'center', padding: '10px' } },
+      delta: { style: { textAlign: 'center', padding: '10px' } },
+      gamma: { style: { textAlign: 'center', padding: '10px' } },
+      vega: { style: { textAlign: 'center', padding: '10px' } },
+      same_ua_average_implied_volatility: { style: { textAlign: 'center', padding: '10px' } },
+      sell_positions: { style: { textAlign: 'center', padding: '10px' } },
+      sell_price: { style: { textAlign: 'center', padding: '10px' } },
+      trades_count: { style: { textAlign: 'center', padding: '10px' } },
+      ua_instrument_code: { style: { textAlign: 'center', padding: '10px' } },
+      ua_instrument_id: { style: { textAlign: 'center', padding: '10px' } },
+      ua_instrument_symbol_fa: { style: { textAlign: 'center', padding: '10px' } },
+      ua_volatility_day: { style: { textAlign: 'center', padding: '10px' } },
+      ua_volatility_week: { style: { textAlign: 'center', padding: '10px' } },
+      ua_volatility_year: { style: { textAlign: 'center', padding: '10px' } },
+      ua_volume: { style: { textAlign: 'center', padding: '10px' } },
+      ua_volume_count: { style: { textAlign: 'center', padding: '10px' } },
+      volatility_skew_horizontal: { style: { textAlign: 'center', padding: '10px' } },
+      volatility_skew_horizontal_value: { style: { textAlign: 'center', padding: '10px' } },
+      volatility_skew_vertical: { style: { textAlign: 'center', padding: '10px' } },
+      volatility_skew_vertical_value: { style: { textAlign: 'center', padding: '10px' } },
+      volume: { style: { textAlign: 'center', padding: '10px' } },
+      volume_count: { style: { textAlign: 'center', padding: '10px' } },
+      volume_score: { style: { textAlign: 'center', padding: '10px' } },
   };
 
     const getCellStyle = (columnName, value) => {
@@ -536,11 +375,11 @@ import { CgDetailsMore} from "react-icons/cg";
                               ))}
                           </tr>
                       </thead>
-                      <tbody className="bg-[#F4F2F2]">
+                      <tbody className="bg-[#F4F2F2] ">
     {sortData(filteredData, sortCriteria, sortOrder).map((item, itemIndex) => (
       <tr
       key={itemIndex}
-      className={itemIndex % 2 === 0 ? 'bg-gray-100 ' : 'bg-white'}
+      className={itemIndex % 2 === 0 ? 'bg-gray-100 ' : 'bg-white '}
       onMouseEnter={() => setHoveredRowIndex(itemIndex)}
     >
 

@@ -64,6 +64,7 @@ import Screener from './components/screener/screener';
 
 import OpStrategies from './components/operational_strategies/operational_strategies';
 import Home from './components/operational_strategies/operational_strategies';
+import Calculation from './components/calculation/Calculation'
 
 import { ReportProvider } from './components/context';
 import ChartIV from './components/Chartiv/ChartIV';
@@ -130,6 +131,7 @@ function App() {
               <Route path="/home" element={isAuthenticated ? <Home /> : <Navigate to="/login" />} />
               <Route path="/operational_strategies" element={isAuthenticated ? <OpStrategies /> : <Navigate to="/login" />} />
               <Route path="/ChartIV" element={isAuthenticated ? <ChartIV /> : <Navigate to="/login" />} />
+              <Route path="/Calculation" element={isAuthenticated ? <Calculation /> : <Navigate to="/login" />} />
               <Route path="/" element={<Navigate to="/login" />} />
 
             </Routes>

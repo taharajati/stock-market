@@ -15,7 +15,7 @@ const Dashboard = () => {
         filter06: 1,
     });
 
-    const [dropdownOpen, setDropdownOpen] = useState(false); // Dropdown state
+    const [dropdownOpen, setDropdownOpen] = useState(true); // Dropdown state
 
     const handleFilter02Change = (value) => {
         setFilterValues({ ...filterValues, filter02: value });
@@ -34,16 +34,13 @@ const Dashboard = () => {
         setFilterValues({ ...filterValues, filter06: value });
     };
 
-    const toggleDropdown = () => {
-        setDropdownOpen(!dropdownOpen);
-    };
+
 
     return (
         <>
              
                     <div className=''>
             <div className='  float-right mx-6  rounded-lg scale-105  text-black p-3   '>
-                <button className=' p-2 rounded-md float-right flex-col bg-[color:var(--color-primary-variant2)] hover:bg-[color:var(--color-primary-variant)] transition duration-500   text-white' onClick={toggleDropdown}>فیلتر ها</button>
                 {dropdownOpen && (
                     <div className="filter-dropdown mt-12 ">
                             <Filter01 setFilterValue={(value) => setFilterValues({ ...filterValues, filter01: value })} />
@@ -59,6 +56,16 @@ const Dashboard = () => {
                 )}
                 
             </div>
+            <br />
+            <br />
+            <br />
+            <br />
+     
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <br />
             <br />
            

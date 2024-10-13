@@ -24,8 +24,8 @@ const Filter04 = ({ onFilterChange }) => {
               onChange={handleChange}
             >
               <option value=""> </option>
-              <option value="c">اختیار خرید</option>
-            <option value="p">اختیار فروش</option>
+              <option value="p">اختیار خرید</option>
+            <option value="c">اختیار فروش</option>
             </Form.Select>
           </Form.Group>
         </Form>

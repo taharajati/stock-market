@@ -57,7 +57,7 @@ const Nav = () => {
           <Link to="/ChartIV " className='hover:bg-[color:var(--color-bg-variant)] p-2 rounded-lg scale-105 transition duration-500 '>نمودار  </Link>
           {permissions?.calculator && <Link to="/Calculation" className='hover:bg-[color:var(--color-bg-variant)] p-2 rounded-lg scale-105 transition duration-500'>ماشین حساب</Link>}
           {permissions?.screener && <Link to="/screener" className='hover:bg-[color:var(--color-bg-variant)] p-2 rounded-lg scale-105 transition duration-500'>دیدبان</Link>}
-          {permissions?.home && <Link to="/home" className='hover:bg-[color:var(--color-bg-variant)] p-2 rounded-lg scale-105 transition duration-500'>صفحه اصلی </Link>}
+          {permissions?.home && <Link to="/screener" className='hover:bg-[color:var(--color-bg-variant)] p-2 rounded-lg scale-105 transition duration-500'>صفحه اصلی </Link>}
 
         </div>
       </div>

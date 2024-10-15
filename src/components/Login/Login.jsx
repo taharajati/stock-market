@@ -8,6 +8,7 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const logo1Ref = useRef(null);
@@ -15,7 +16,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-
+      setLoading(true)
       const response = await fetch("https://api.optionscreener.ir/api/auth/login", {
         method: "POST",
         headers: {
@@ -36,6 +37,8 @@ function Login() {
       }
     } catch (error) {
       alert("خطای شبکه!");
+    } finally {
+      setLoading(false); // Set loading to false after the fetch is complete
     }
   };
 
@@ -45,6 +48,11 @@ function Login() {
 
   return (
     <div className="flex flex-col md:flex-row items-center justify-center h-screen bg-[color:var(--color-bg)]">
+          {loading && (
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
+          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-700"></div>
+        </div>
+      )}
       {/* Left side: Picture */}
       <div className="relative w-full h-full hidden md:flex items-center justify-center" ref={logo1Ref}>
         <img src={logo1} alt="Logo 1" className="h-full w-full object-cover" />

@@ -16,7 +16,7 @@ const DataFilter = ({ intradata, filterValues, columns, parseDate }) => {
         }
 
         // Check option type filter (filter04)
-        if (filterValues.filter04 && item.option_type.toLowerCase().includes(filterValues.filter04.toLowerCase())) {
+        if (filterValues.filter04 && !item.option_type.toLowerCase().includes(filterValues.filter04.toLowerCase())) {
             console.log(`Option type Filter: ${item.option_type} does not include ${filterValues.filter04}`);
             console.log('Item Option Type:', item.option_type);
             console.log('Filter04 Value:', filterValues.filter04);
@@ -25,7 +25,7 @@ const DataFilter = ({ intradata, filterValues, columns, parseDate }) => {
         }
 
         // Check volume filter (filter06)
-        if (filterValues.filter06 && item.volume <= filterValues.filter06) {
+        if (filterValues.filter06 !== undefined && item.volume > filterValues.filter06) {
             return false;
         }
 

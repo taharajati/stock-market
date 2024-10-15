@@ -309,7 +309,7 @@ import { CgDetailsMore} from "react-icons/cg";
       intradata,
       filterValues,
       columns,
-  }).filter(item => item.volume > 1); // Apply the volume filter here
+  }).filter(item => item.volume >= 0 ).filter(item => item.sell_price > 0 || item.buy_price > 0)    ; // Apply the volume filter here
 
   const sortData = (data, criteria, order) => {
       return data.sort((a, b) => {
@@ -341,18 +341,38 @@ import { CgDetailsMore} from "react-icons/cg";
   return (
       <div className=" mx-auto p-4 w-[1600px] " dir="rtl">
           <div className="flex items-center justify-between mb-3 ">
-              <div className="space-x-4">
-                  {validGroups.map((groupKey) => (
-                    <button
-                    key={groupKey}
-                    type="button"
-                    className={`px-3 py-1 hover:bg-[color:var(--color-primary)] hover:text-white transition duration-500 ${selectedGroup === groupKey ? 'bg-[color:var(--color-bg-variant)]  text-white px-4 py-2 rounded-lg scale-105 transition duration-500' : 'bg-[#F4F2F2] rounded-md'}`}
-                    onClick={() => setSelectedGroup(groupKey)}
-                  >
-                    {data && data.groups && data.groups[groupKey] ? data.groups[groupKey] : 'Unknown Group'}
-                  </button>
-                  ))}
-              </div>
+          <div className="space-x-4">
+  {validGroups.map((groupKey) => (
+    <button
+      key={groupKey}
+      type="button"
+      className={`px-3 py-1 hover:bg-[color:var(--color-primary)] hover:text-white transition duration-500 ${selectedGroup === groupKey ? 'bg-[color:var(--color-bg-variant)]  text-white px-4 py-2 rounded-lg scale-105 transition duration-500' : 'bg-[#F4F2F2] rounded-md'}`}
+      onClick={() => setSelectedGroup(groupKey)}
+    >
+      {data && data.groups && data.groups[groupKey] ? data.groups[groupKey] : 'Unknown Group'}
+    </button>
+  ))}
+
+  {/* Add the new button "نمودار" here */}
+  <button
+    type="button"
+    className="px-4 py-2 bg-[color:var(--color-primary)] text-white rounded-lg hover:bg-[color:var(--color-bg-variant)] transition duration-500"
+    onClick={() => {
+      // Trigger the logic to show the chart here
+      setShowChart(true);
+      setChartData(data); // Assuming 'data' is your table data for chart
+    }}
+  >
+    نمودار
+  </button>
+
+</div>
+{showChart && (
+  <Modal onClose={() => setShowChart(false)}>  {/* Assuming you use a Modal to show the chart */}
+    <MyChart data={chartData} />  {/* Pass the data to the chart */}
+  </Modal>
+)}
+
           </div>
 
           <div className="m-2 items-center  w-[1900px]">

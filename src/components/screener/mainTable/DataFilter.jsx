@@ -24,16 +24,18 @@ const DataFilter = ({ intradata, filterValues, columns, parseDate }) => {
             return false;
         }
 
-        // Check volume filter (filter06)
-        if (filterValues.filter06 && item.volume <= filterValues.filter06) {
-            return false;
-        }
+     
 
         // Check due date filter
         if (filterValues.dueDate && item.days_to_maturity_fa !== filterValues.dueDate) {
             return false;
         }
 
+             // Check the volume filter (filter07)
+             if (filterValues.filter07 && item.volume <= 0) {
+                return false; // Only show volumes greater than 0 if checkbox is checked
+            }
+            
         return true;
     });
 

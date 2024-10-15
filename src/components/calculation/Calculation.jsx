@@ -1,4 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { Line } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+
+// Register chart components
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+
 
 const Calculation = () => {
   const [strategies, setStrategies] = useState([]);
@@ -158,6 +164,31 @@ const Calculation = () => {
       setLoading(false); // Set loading to false after the fetch is complete
     }
   };
+ // Prepare chart data
+ const chartData = {
+  labels: response?.stock_price_array || [],  // Stock prices for x-axis
+  datasets: [
+    {
+      label: 'Strategy Profit',
+      data: response?.strategy_profit || [],  // Strategy profit for y-axis
+      borderColor: 'rgba(75, 192, 192, 1)',
+      backgroundColor: 'rgba(75, 192, 192, 0.2)',
+      fill: true,
+    },
+  ],
+};
+
+const options = {
+  responsive: true,
+  plugins: {
+    legend: { position: 'top' },
+    title: { display: true, text: 'Strategy Profit vs Stock Price' },
+  },
+  scales: {
+    x: { title: { display: true, text: 'Stock Price' } },
+    y: { title: { display: true, text: 'Profit' } },
+  },
+};
 
   return (
     
@@ -373,25 +404,12 @@ const Calculation = () => {
 
     <div className="mt-4">
       <h4 className="font-semibold">سود استراتژی:</h4>
-      {/* Scrollable container for the table */}
-      <div className="max-h-48 overflow-y-auto border border-gray-300 rounded">
-        <table className="min-w-full border-collapse text-sm">
-          <thead>
-            <tr>
-              <th className="border border-gray-300 p-1">اندیس سود</th>
-              <th className="border border-gray-300 p-1">مقدار سود</th>
-            </tr>
-          </thead>
-          <tbody>
-            {response.strategy_profit.map((profit, index) => ( // Display all profits
-              <tr key={index}>
-                <td className="border border-gray-300 p-1 text-center">{index + 1}</td>
-                <td className="border border-gray-300 p-1 text-center">{profit}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {/* Chart to display strategy profit vs stock price */}
+      {response && (
+        <div className="mt-8">
+          <Line data={chartData} options={options} />
+        </div>
+      )}
       <p className="text-right mt-2 text-sm text-gray-600">نمایش {response.strategy_profit.length} سود</p>
     </div>
   </div>
